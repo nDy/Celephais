@@ -1,26 +1,26 @@
 /*
- * Menu.cpp
+ * GameStateAsleep.cpp
  *
- *  Created on: May 23, 2015
+ *  Created on: May 30, 2015
  *      Author: ndy
  */
 
-#include "Menu.hpp"
+#include "GameStateAsleep.hpp"
 
-Menu::Menu(Game* game) {
+GameStateAsleep::GameStateAsleep(Game* game) {
 	this->game = game;
 }
 
-void Menu::draw(const float dt) {
+void GameStateAsleep::draw(const float dt) {
 	this->game->window.setView(this->view);
 
 	this->game->window.clear(sf::Color::Black);
 }
 
-void Menu::update(const float dt) {
+void GameStateAsleep::update(const float dt) {
 }
 
-void Menu::handleInput() {
+void GameStateAsleep::handleInput() {
 	sf::Event event;
 
 	while (this->game->window.pollEvent(event)) {
@@ -45,7 +45,7 @@ void Menu::handleInput() {
 	}
 }
 
-Menu::~Menu() {
+GameStateAsleep::~GameStateAsleep() {
 	// TODO Auto-generated destructor stub
 }
 
