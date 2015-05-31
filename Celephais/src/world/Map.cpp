@@ -38,7 +38,7 @@ unsigned int Map::getDimX() {
 }
 
 unsigned int Map::getDimY() {
-	this->map.size();
+	return this->map.size();
 }
 
 Map::~Map() {
