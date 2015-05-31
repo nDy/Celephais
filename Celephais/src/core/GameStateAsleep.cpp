@@ -13,8 +13,6 @@ GameStateAsleep::GameStateAsleep(Game* game) {
 	this->map = new Map(9, 7, this);
 	this->view.setSize(288, 221);
 	this->view.setCenter(144, 110);
-	this->camera.setSize(288, 221);
-	this->camera.setCenter(144, 110);
 
 	this->player = new Body("Player1", "media/testToken.png", this, this->map,
 			2, 2);
