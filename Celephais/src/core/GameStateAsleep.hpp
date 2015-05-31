@@ -11,6 +11,7 @@
 #include "GameState.hpp"
 #include "../world/Map.hpp"
 #include "../world/Body.hpp"
+#include "../characters/Kuranes.h"
 
 class GameStateAsleep: public GameState {
 public:
@@ -19,7 +20,7 @@ private:
 
 	unsigned int oldx, oldy;
 
-	Body* player;
+	Kuranes* player;
 
 	Body* obstacle;
 

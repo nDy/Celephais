@@ -47,6 +47,7 @@ void GameStateLogin::handleInput() {
 				this->game->window.close();
 			else if (event.key.code == sf::Keyboard::Space)
 				this->loadgame();
+			break;
 		}
 		default:
 			break;

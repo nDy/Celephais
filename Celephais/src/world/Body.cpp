@@ -65,3 +65,6 @@ Body::~Body() {
 	// TODO Auto-generated destructor stub
 }
 
+void Body::setTexture(sf::Texture& tex) {
+	this->img.setTexture(tex);
+}
