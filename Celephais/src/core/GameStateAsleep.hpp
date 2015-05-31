@@ -22,8 +22,6 @@ private:
 
 	Kuranes* player;
 
-	Body* obstacle;
-
 	Map* map;
 
 public:

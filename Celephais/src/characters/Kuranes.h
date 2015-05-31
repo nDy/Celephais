@@ -13,6 +13,11 @@ class Kuranes: public Body {
 public:
 	Kuranes(GameState*, Map*, unsigned int, unsigned int);
 	void turn(unsigned int);
+	void moveLeft();
+	void moveRight();
+	void moveUp();
+	void moveDown();
+
 	virtual ~Kuranes();
 };
 

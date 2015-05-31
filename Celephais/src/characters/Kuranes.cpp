@@ -38,6 +38,26 @@ void Kuranes::turn(unsigned int side) {
 
 }
 
+void Kuranes::moveLeft() {
+	this->turn(Body::LEFT);
+	this->setPos((this->getx() / 32) - 1, this->gety() / 32);
+}
+
+void Kuranes::moveRight() {
+	this->turn(Body::RIGHT);
+	this->setPos((this->getx() / 32) + 1, (this->gety() / 32));
+}
+
+void Kuranes::moveUp() {
+	this->turn(Body::BACK);
+	this->setPos(this->getx() / 32, (this->gety() / 32) - 1);
+}
+
+void Kuranes::moveDown() {
+	this->turn(Body::FRONT);
+	this->setPos(this->getx() / 32, (this->gety() / 32) + 1);
+}
+
 Kuranes::~Kuranes() {
 	// TODO Auto-generated destructor stub
 }
