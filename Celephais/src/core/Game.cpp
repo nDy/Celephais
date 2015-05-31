@@ -18,6 +18,8 @@ Game::Game() {
 	this->window.create(sf::VideoMode(288, 221), "Celephais");
 	this->window.setFramerateLimit(60);
 
+	//world 9x7
+
 }
 
 void Game::pushState(GameState* state) {

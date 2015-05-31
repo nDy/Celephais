@@ -9,6 +9,7 @@
 #define CORE_GAMESTATEASLEEP_HPP_
 
 #include "GameState.hpp"
+#include "../world/Body.hpp"
 
 class GameStateAsleep: public GameState {
 public:
@@ -16,6 +17,10 @@ private:
 	sf::View view;
 
 	sf::Sprite background;
+
+	Body* a;
+	Body* b;
+
 public:
 	GameStateAsleep(Game* game);
 

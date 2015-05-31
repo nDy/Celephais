@@ -14,17 +14,27 @@ GameStateAsleep::GameStateAsleep(Game* game) {
 	this->loadTextures();
 
 	this->background.setTexture(this->texmgr->getRef("background"));
+	this->a = new Body("token", "media/testToken.png", this);
+	this->b = new Body("token", "media/testToken.png", this);
+	this->a->setPos(2, 2);
+	this->b->setPos(6, 5);
+	this->view.setSize(288, 221);
+	this->view.setCenter(144, 110);
+	this->game->window.setView(this->view);
+
 }
+
 void GameStateAsleep::loadTextures() {
 	texmgr->loadTexture("background", "media/background.png");
 }
 
 void GameStateAsleep::draw(const float dt) {
-	this->game->window.setView(this->view);
 
 	//actual drawing
 	this->game->window.clear(sf::Color::Red);
 	this->game->window.draw(this->background);
+	this->a->draw();
+	this->b->draw();
 
 }
 
@@ -57,7 +67,16 @@ void GameStateAsleep::handleInput() {
 		case sf::Event::KeyPressed: {
 			if (event.key.code == sf::Keyboard::Escape)
 				this->game->window.close();
+			else if (event.key.code == sf::Keyboard::Right)
+				this->a->setPos(this->a->getx() + 1, this->a->gety());
+			else if (event.key.code == sf::Keyboard::Left)
+				this->a->setPos(this->a->getx() - 1, this->a->gety());
+			else if (event.key.code == sf::Keyboard::Up)
+				this->a->setPos(this->a->getx(), this->a->gety() - 1);
+			else if (event.key.code == sf::Keyboard::Down)
+				this->a->setPos(this->a->getx(), this->a->gety() + 1);
 		}
+			break;
 		default:
 			break;
 		}
