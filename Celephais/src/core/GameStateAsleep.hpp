@@ -17,6 +17,8 @@ public:
 private:
 	sf::View view;
 
+	unsigned int oldx, oldy;
+
 	Body* player;
 
 	Body* obstacle;

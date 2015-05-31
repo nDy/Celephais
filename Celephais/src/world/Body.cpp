@@ -50,11 +50,11 @@ bool Body::setPos(unsigned int x, unsigned int y) {
 }
 
 unsigned int Body::getx() {
-	return this->posx;
+	return this->posx * 32;
 }
 
 unsigned int Body::gety() {
-	return this->posy;
+	return this->posy * 32;
 }
 
 std::string Body::getType() {
