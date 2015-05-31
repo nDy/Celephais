@@ -5,8 +5,8 @@
  *      Author: ndy
  */
 
-#ifndef GAMESTATEASLEEP_HPP_
-#define GAMESTATEASLEEP_HPP_
+#ifndef CORE_GAMESTATEASLEEP_HPP_
+#define CORE_GAMESTATEASLEEP_HPP_
 
 #include "GameState.hpp"
 
@@ -14,14 +14,17 @@ class GameStateAsleep: public GameState {
 public:
 private:
 	sf::View view;
+
+	sf::Sprite background;
 public:
 	GameStateAsleep(Game* game);
 
 	void draw(const float dt);
 	void update(const float dt);
 	void handleInput();
+    void loadTextures();
 
 	virtual ~GameStateAsleep();
 };
 
-#endif /* GAMESTATEASLEEP_HPP_ */
+#endif /* CORE_GAMESTATEASLEEP_HPP_ */

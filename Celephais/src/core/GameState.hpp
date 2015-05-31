@@ -5,8 +5,8 @@
  *      Author: ndy
  */
 
-#ifndef GAMESTATE_HPP_
-#define GAMESTATE_HPP_
+#ifndef CORE_GAMESTATE_HPP_
+#define CORE_GAMESTATE_HPP_
 
 #include "Game.hpp"
 
@@ -15,13 +15,16 @@ public:
 
 	Game* game;
 
+	TextureManager* texmgr;
+
 	GameState();
 
     virtual void draw(const float dt) = 0;
     virtual void update(const float dt) = 0;
     virtual void handleInput() = 0;
+    virtual void loadTextures() = 0;
 
 	virtual ~GameState();
 };
 
-#endif /* GAMESTATE_HPP_ */
+#endif /* CORE_GAMESTATE_HPP_ */

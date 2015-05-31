@@ -5,15 +5,19 @@
  *      Author: ndy
  */
 
-#ifndef GAME_HPP_
-#define GAME_HPP_
+#ifndef CORE_GAME_HPP_
+#define CORE_GAME_HPP_
 
 #include <stack>
 #include <SFML/Graphics.hpp>
 
+#include "../utils/TextureManager.hpp"
+
 class GameState;
 
 class Game {
+private:
+	void loadTextures();
 public:
 	Game();
 
@@ -31,4 +35,4 @@ public:
 	virtual ~Game();
 };
 
-#endif /* GAME_HPP_ */
+#endif /* CORE_GAME_HPP_ */

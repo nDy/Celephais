@@ -6,8 +6,8 @@
 // Description : Hello World in C++, Ansi-style
 //============================================================================
 
-#include "Game.hpp"
-#include "GameStateLogin.hpp"
+#include "core/Game.hpp"
+#include "core/GameStateLogin.hpp"
 
 int main(int argc, char **argv){
 

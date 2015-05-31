@@ -22,7 +22,6 @@ void GameStateLogin::draw(const float dt) {
 
 	this->game->window.clear(sf::Color::Black);
 
-//	this->game->window.draw(this->game->background);
 }
 
 void GameStateLogin::update(const float dt) {
@@ -41,8 +40,6 @@ void GameStateLogin::handleInput() {
 			/* Resize the window */
 		case sf::Event::Resized: {
 			this->view.setSize(event.size.width, event.size.height);
-//			this->game->background.setPosition(					this->game->window.mapPixelToCoords(sf::Vector2i(0, 0)));
-//			this->game->background.setScale(					float(event.size.width)							/ float(									this->game->background.getTexture()->getSize().x),					float(event.size.height)							/ float(									this->game->background.getTexture()->getSize().y));
 			break;
 		}
 		case sf::Event::KeyPressed: {
@@ -56,10 +53,13 @@ void GameStateLogin::handleInput() {
 		}
 	}
 }
+void GameStateLogin::loadTextures() {
+
+	return;
+}
 
 void GameStateLogin::loadgame() {
 	this->game->pushState(new GameStateAsleep(this->game));
-
 	return;
 }
 

@@ -5,8 +5,8 @@
  *      Author: ndy
  */
 
-#ifndef GAMESTATELOGIN_HPP_
-#define GAMESTATELOGIN_HPP_
+#ifndef CORE_GAMESTATELOGIN_HPP_
+#define CORE_GAMESTATELOGIN_HPP_
 
 #include "GameState.hpp"
 
@@ -20,8 +20,9 @@ public:
 	void update(const float dt);
 	void handleInput();
 	void loadgame();
+	void loadTextures();
 
 	virtual ~GameStateLogin();
 };
 
-#endif /* GAMESTATELOGIN_HPP_ */
+#endif /* CORE_GAMESTATELOGIN_HPP_ */
