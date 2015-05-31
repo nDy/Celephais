@@ -11,18 +11,26 @@
 #include <string>
 #include "../core/GameState.hpp"
 
+class Map;
+
 class Body {
 private:
 	std::string type;
 	sf::Sprite img;
 	GameState* gs;
-	unsigned int posx,posy;
+	unsigned int posx, posy;
+
+	//visibilidad del personaje
+	Map* map;
 public:
-	Body(std::string, std::string, GameState*);
+	Body();
+	Body(std::string, std::string, GameState*, Map*, unsigned int,
+			unsigned int);
 	void draw();
-	void setPos(unsigned int,unsigned int);
+	bool setPos(unsigned int, unsigned int);
 	unsigned int getx();
 	unsigned int gety();
+	std::string getType();
 	virtual ~Body();
 };
 

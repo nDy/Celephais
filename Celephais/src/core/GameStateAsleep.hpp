@@ -9,6 +9,7 @@
 #define CORE_GAMESTATEASLEEP_HPP_
 
 #include "GameState.hpp"
+#include "../world/Map.hpp"
 #include "../world/Body.hpp"
 
 class GameStateAsleep: public GameState {
@@ -16,10 +17,11 @@ public:
 private:
 	sf::View view;
 
-	sf::Sprite background;
+	Body* player;
 
-	Body* a;
-	Body* b;
+	Body* obstacle;
+
+	Map* map;
 
 public:
 	GameStateAsleep(Game* game);
@@ -27,7 +29,7 @@ public:
 	void draw(const float dt);
 	void update(const float dt);
 	void handleInput();
-    void loadTextures();
+	void loadTextures();
 
 	virtual ~GameStateAsleep();
 };
