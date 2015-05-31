@@ -12,7 +12,6 @@
 
 #include "Game.hpp"
 #include "GameState.hpp"
-#include "GameStateAsleep.hpp"
 
 
 void Game::pushState(GameState* state)
@@ -67,7 +66,6 @@ Game::Game()
 {
     this->window.create(sf::VideoMode(800, 600), "Celephais");
     this->window.setFramerateLimit(60);
-    this->states.push(new GameStateAsleep(this));
 }
 
 Game::~Game() {

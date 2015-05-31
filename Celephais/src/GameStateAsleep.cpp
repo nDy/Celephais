@@ -14,7 +14,7 @@ GameStateAsleep::GameStateAsleep(Game* game) {
 void GameStateAsleep::draw(const float dt) {
 	this->game->window.setView(this->view);
 
-	this->game->window.clear(sf::Color::Black);
+	this->game->window.clear(sf::Color::Red);
 }
 
 void GameStateAsleep::update(const float dt) {

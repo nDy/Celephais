@@ -7,10 +7,13 @@
 //============================================================================
 
 #include "Game.hpp"
+#include "GameStateLogin.hpp"
 
 int main(int argc, char **argv){
 
     Game game;
+
+    game.pushState(new GameStateLogin(&game));
 
     game.gameLoop();
 
