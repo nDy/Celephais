@@ -9,8 +9,8 @@
 
 #include "GameStateAsleep.hpp"
 
-GameStateLogin::GameStateLogin(Game* game) {
-	this->game = game;
+GameStateLogin::GameStateLogin(Game* game) :
+		GameState(game, new TextureManager()) {
 	sf::Vector2f pos = sf::Vector2f(this->game->window.getSize());
 	this->view.setSize(pos);
 	pos *= 0.5f;

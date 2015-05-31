@@ -7,9 +7,9 @@
 
 #include "GameState.hpp"
 
-GameState::GameState() {
-	// TODO Auto-generated constructor stub
-
+GameState::GameState(Game* g, TextureManager* tex) {
+	this->game = g;
+	this->texmgr = tex;
 }
 
 GameState::~GameState() {

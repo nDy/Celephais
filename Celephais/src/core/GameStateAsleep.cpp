@@ -7,9 +7,8 @@
 
 #include "GameStateAsleep.hpp"
 
-GameStateAsleep::GameStateAsleep(Game* game) {
-	this->game = game;
-	this->texmgr = new TextureManager();
+GameStateAsleep::GameStateAsleep(Game* game) :
+		GameState(game, new TextureManager()) {
 	this->map = new Map(9, 7, this);
 	this->view.setSize(288, 221);
 	this->view.setCenter(144, 110);
