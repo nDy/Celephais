@@ -13,11 +13,11 @@ World::World(sf::View* view, GameState* gs) {
 	this->d = new std::list<Dialogue>();
 	this->view = view;
 	this->gs = gs;
-	this->map = new Map(9, 7, this->gs);
-	this->view->setSize(288, 221);
-	this->view->setCenter(144, 110);
+	this->map = new Map(60, 58, this->gs);
+	this->view->setSize(800, 600);
+	this->view->setCenter(400, 300);
 
-	this->player = new Kuranes(this->gs, this->map, 2, 2);
+	this->player = new Kuranes(this->gs, this->map, 12, 18);
 	this->map->at(4, 0)->top = new Body("Obstacle", "media/testToken.png",
 			this->gs, this->map, 4, 0, Body::SILENT);
 	this->map->at(4, 1)->top = new Body("Obstacle", "media/testToken.png",
@@ -30,14 +30,14 @@ World::World(sf::View* view, GameState* gs) {
 			this->gs, this->map, 4, 4, Body::SILENT);
 
 	TalkingBody* peter;
-	peter = new TalkingBody("Peter", "media/Peter.png", this->gs, this->map, 0,
-			0);
+	peter = new TalkingBody("Peter", "media/Peter.png", this->gs, this->map, 18,
+			25);
 	std::list<Dialogue> chatterings;
 	chatterings.push_back(Dialogue("Hello I am peter!", this->gs));
 	chatterings.push_back(Dialogue("Welcome to Celephais!", this->gs));
 	peter->setDialogue(chatterings);
 
-	this->map->at(0, 0)->top = peter;
+	this->map->at(18, 25)->top = peter;
 
 	this->view->setCenter(player->getx(), player->gety());
 	oldx = player->getx();

@@ -13,8 +13,8 @@
 #include "../core/GameState.hpp"
 
 class Dialogue {
-	sf::Text text;
-	sf::Font f;
+	sf::Text *text;
+	sf::Font *f;
 	GameState* gs;
 public:
 	Dialogue(std::string, GameState*);
