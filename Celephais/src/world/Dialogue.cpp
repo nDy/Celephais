@@ -18,14 +18,23 @@ Dialogue::Dialogue(std::string str, GameState* gs) {
 	this->text->setFont(*f);
 	this->text->setString(str);
 	this->text->setCharacterSize(24);
-	this->text->setColor(sf::Color::Red);
+	this->text->setColor(sf::Color::White);
 	this->text->setStyle(sf::Text::Bold | sf::Text::Underlined);
 }
 
 void Dialogue::draw() {
 	//this->gs->game->window.setView(this->gs->game->window.getDefaultView());
-	this->text->setPosition(((GameStateAsleep*) this->gs)->world->player->getx(),
-			((GameStateAsleep*) this->gs)->world->player->gety());
+	sf::RectangleShape bg;
+	bg.setSize(sf::Vector2f(800-20, 2 * 600 / 5));
+	bg.setOutlineColor(sf::Color::Black);
+	bg.setOutlineThickness(5);
+	bg.setFillColor(sf::Color(0, 0, 0, 180));
+	bg.setPosition(((GameStateAsleep*) this->gs)->world->player->getx() - 400 +10,
+			((GameStateAsleep*) this->gs)->world->player->gety()+50);
+	this->text->setPosition(
+			((GameStateAsleep*) this->gs)->world->player->getx() - 400 + 40,
+			((GameStateAsleep*) this->gs)->world->player->gety() + 70);
+	this->gs->game->window.draw(bg);
 	this->gs->game->window.draw(*text);
 }
 
