@@ -8,15 +8,14 @@
 #ifndef CORE_GAMESTATEASLEEP_HPP_
 #define CORE_GAMESTATEASLEEP_HPP_
 
+#include "../world/World.hpp"
 #include "GameState.hpp"
-#include "../world/World.h"
 
 class GameStateAsleep: public GameState {
 public:
+	World* world;
 private:
 	sf::View* view;
-
-	World* world;
 
 public:
 	GameStateAsleep(Game* game);

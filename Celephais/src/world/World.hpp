@@ -5,19 +5,19 @@
  *      Author: ndy
  */
 
-#ifndef WORLD_WORLD_H_
-#define WORLD_WORLD_H_
+#ifndef WORLD_WORLD_HPP_
+#define WORLD_WORLD_HPP_
 
 #include "../world/Map.hpp"
 #include "../world/Body.hpp"
 #include "../characters/Kuranes.h"
 #include "../core/GameState.hpp"
+#include "Dialogue.h"
+#include <list>
 
 class World {
 
 	unsigned int oldx, oldy;
-
-	Kuranes* player;
 
 	Map* map;
 
@@ -25,11 +25,17 @@ class World {
 
 	GameState* gs;
 
+	std::list<Dialogue>* d;
+
 public:
+	Kuranes* player;
+
 	World(sf::View*, GameState*);
 	void handleEvents(sf::Event);
+	void mapEvents(sf::Event);
+	void dialogueEvents(sf::Event);
 	void draw();
 	virtual ~World();
 };
 
-#endif /* WORLD_WORLD_H_ */
+#endif /* WORLD_WORLD_HPP_ */

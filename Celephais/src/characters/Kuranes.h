@@ -10,9 +10,11 @@
 #include "../world/Body.hpp"
 
 class Kuranes: public Body {
+	unsigned int orientation;
 public:
 	Kuranes(GameState*, Map*, unsigned int, unsigned int);
 	void turn(unsigned int);
+	unsigned int getOrientation();
 	void moveLeft();
 	void moveRight();
 	void moveUp();

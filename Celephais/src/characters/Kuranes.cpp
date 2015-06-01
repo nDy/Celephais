@@ -16,22 +16,27 @@ Kuranes::Kuranes(GameState* gs, Map* m, unsigned int x, unsigned int y) :
 			"media/Kuranes/KuranesLeft.png");
 	this->gs->texmgr->loadTexture("KuranesRight",
 			"media/Kuranes/KuranesRight.png");
+	this->orientation = Body::FRONT;
 }
 
 void Kuranes::turn(unsigned int side) {
-
+	this->orientation = side;
 	switch (side) {
 	case FRONT:
 		this->setTexture(this->gs->texmgr->getRef("KuranesFront"));
+		this->orientation = FRONT;
 		break;
 	case BACK:
 		this->setTexture(this->gs->texmgr->getRef("KuranesBack"));
+		this->orientation = BACK;
 		break;
 	case LEFT:
 		this->setTexture(this->gs->texmgr->getRef("KuranesLeft"));
+		this->orientation = LEFT;
 		break;
 	case RIGHT:
 		this->setTexture(this->gs->texmgr->getRef("KuranesRight"));
+		this->orientation = RIGHT;
 		break;
 	default:
 		break;
@@ -57,6 +62,10 @@ void Kuranes::moveUp() {
 void Kuranes::moveDown() {
 	this->turn(Body::FRONT);
 	this->setPos(this->getx() / 32, (this->gety() / 32) + 1);
+}
+
+unsigned int Kuranes::getOrientation() {
+	return this->orientation;
 }
 
 Kuranes::~Kuranes() {
