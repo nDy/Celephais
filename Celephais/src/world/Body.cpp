@@ -9,6 +9,7 @@
 #include "Map.hpp"
 
 Body::Body() {
+	this->type = Body::SILENT;
 	this->gs = nullptr;
 	this->map = nullptr;
 	this->posx = 0;
@@ -16,13 +17,14 @@ Body::Body() {
 	this->img.setPosition(0, 0);
 }
 
-Body::Body(std::string type, std::string file, GameState* g, Map* m,
-		unsigned int x, unsigned int y) {
+Body::Body(std::string name, std::string file, GameState* g, Map* m,
+		unsigned int x, unsigned int y, unsigned int type) {
 	this->type = type;
+	this->name = name;
 	this->gs = g;
 	this->map = m;
-	this->gs->texmgr->loadTexture(type, file);
-	this->img.setTexture(this->gs->texmgr->getRef(type));
+	this->gs->texmgr->loadTexture(name, file);
+	this->img.setTexture(this->gs->texmgr->getRef(name));
 	this->posx = x;
 	this->posy = y;
 	this->img.setPosition(x * 32, y * 32);
@@ -57,8 +59,16 @@ unsigned int Body::gety() {
 	return this->posy * 32;
 }
 
-std::string Body::getType() {
+std::string Body::getName() {
+	return this->name;
+}
+
+unsigned int Body::getType() {
 	return this->type;
+}
+
+void Body::setType(unsigned int type) {
+	this->type = type;
 }
 
 Body::~Body() {

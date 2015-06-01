@@ -8,7 +8,8 @@
 #include "Kuranes.h"
 
 Kuranes::Kuranes(GameState* gs, Map* m, unsigned int x, unsigned int y) :
-		Body("KuranesFront", "media/Kuranes/KuranesFront.png", gs, m, x, y) {
+		Body("KuranesFront", "media/Kuranes/KuranesFront.png", gs, m, x, y,
+				Body::MOVING) {
 	this->gs->texmgr->loadTexture("KuranesBack",
 			"media/Kuranes/KuranesBack.png");
 	this->gs->texmgr->loadTexture("KuranesLeft",

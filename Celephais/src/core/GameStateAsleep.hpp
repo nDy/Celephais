@@ -9,20 +9,14 @@
 #define CORE_GAMESTATEASLEEP_HPP_
 
 #include "GameState.hpp"
-#include "../world/Map.hpp"
-#include "../world/Body.hpp"
-#include "../characters/Kuranes.h"
+#include "../world/World.h"
 
 class GameStateAsleep: public GameState {
 public:
 private:
-	sf::View view;
+	sf::View* view;
 
-	unsigned int oldx, oldy;
-
-	Kuranes* player;
-
-	Map* map;
+	World* world;
 
 public:
 	GameStateAsleep(Game* game);

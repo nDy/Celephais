@@ -16,10 +16,12 @@ class Map;
 class Body {
 public:
 	enum {
-		FRONT, BACK, LEFT, RIGHT
+		FRONT, BACK, LEFT, RIGHT, MOVING, TALKING, SILENT
 	};
+
 private:
-	std::string type;
+	unsigned int type;
+	std::string name;
 	sf::Sprite img;
 	unsigned int posx, posy;
 
@@ -28,15 +30,17 @@ private:
 public:
 	GameState* gs;
 	Body();
-	Body(std::string, std::string, GameState*, Map*, unsigned int,
+	Body(std::string, std::string, GameState*, Map*, unsigned int, unsigned int,
 			unsigned int);
 	void draw();
 	bool setPos(unsigned int, unsigned int);
 	void setTexture(sf::Texture&);
 	unsigned int getx();
 	unsigned int gety();
-	std::string getType();
+	std::string getName();
 	virtual ~Body();
+	void setType(unsigned int type);
+	unsigned int getType();
 };
 
 #endif /* WORLD_BODY_HPP_ */
