@@ -10,6 +10,8 @@
 
 Intro::Intro(Game* game) :
 		GameState(game, new TextureManager()) {
+	next = false;
+	activateNext = 0;
 	this->d = new std::list<Dialogue>();
 
 // intro buildup
@@ -66,21 +68,21 @@ void Intro::draw(const float dt) {
 void Intro::update(const float dt) {
 
 	this->activateNext += dt;
-	if (this->activateNext >= 0.0166 && next) {
+	if (this->activateNext >= 0.25 && next) {
 		this->d->pop_front();
 		this->next = false;
 		this->activateNext = 0;
 	}
 
-	if (this->d->size() == 2)
+	if (this->d->size() == 2 && this->background.size() == 2)
 		this->background.pop_front();
-	if (this->d->size() == 0) {
+	if (this->d->size() == 0 && this->background.size() == 1) {
 		d->push_back(
 				Dialogue(
 						"toward distant regions where the sea meets the sky...",
 						this));
-		this->game->pushState(new GameStateAsleep(this->game));
-		//this->game->changeState(new GameStateAsleep(this->game));
+		this->game->popState();
+		this->game->changeState(new GameStateAsleep(this->game));
 	}
 
 }
@@ -90,10 +92,10 @@ void Intro::handleInput() {
 	sf::Event event;
 
 	while (this->game->window.pollEvent(event)) {
-
-		if (!this->d->empty())
-			this->dialogueEvents(event);
-
+		if (this->activateNext >= 0.25) {
+			if (!this->d->empty())
+				this->dialogueEvents(event);
+		}
 	}
 }
 
