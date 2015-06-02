@@ -26,12 +26,15 @@ Intro::Intro(Game* game) :
 	chatterings.push_back(
 			Dialogue("In a dream Kuranes saw the city in the valley...", this));
 	chatterings.push_back(
-			Dialogue("...and the seacoast beyond, and the snowy peak...", this));
+			Dialogue("...and the seacoast beyond, and the snowy peak...",
+					this));
 	chatterings.push_back(Dialogue("...overlooking the sea", this));
 	chatterings.push_back(Dialogue("And the gaily painted galleys...", this));
 	chatterings.push_back(Dialogue("...that sail out of the harbor", this));
 	chatterings.push_back(Dialogue("Toward distant regions where...", this));
 	chatterings.push_back(Dialogue("...where the sea meets the sky.", this));
+
+	this->control.push_back(3);
 
 	for (std::list<Dialogue>::iterator it = chatterings.begin();
 			it != chatterings.end(); it++)
@@ -55,6 +58,8 @@ Intro::Intro(Game* game) :
 			it != chatterings.end(); it++)
 		d->push_back(*it);
 
+	//this->control.push_back(this->control.back() + 3);
+
 }
 
 void Intro::draw(const float dt) {
@@ -73,15 +78,13 @@ void Intro::update(const float dt) {
 		this->activateNext = 0;
 	}
 
-	if (this->d->size() == 2 && this->background.size() == 2)
-		this->background.pop_front();
 	if (this->d->size() == 0 && this->background.size() == 1) {
-		d->push_back(
-				Dialogue(
-						"toward distant regions where the sea meets the sky...",
-						this));
-		this->game->popState();
 		this->game->changeState(new GameStateAsleep(this->game));
+	}
+
+	if (this->d->size() == this->control.back()) {
+		this->background.pop_front();
+		this->control.pop_back();
 	}
 
 }

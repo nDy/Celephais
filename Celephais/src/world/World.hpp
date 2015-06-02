@@ -9,10 +9,10 @@
 #define WORLD_WORLD_HPP_
 
 #include "../world/Map.hpp"
-#include "../world/Body.hpp"
+#include "../body/Body.hpp"
 #include "../characters/Kuranes.h"
 #include "../core/GameState.hpp"
-#include "Dialogue.h"
+#include "../core/Dialogue.h"
 #include <list>
 
 class World {

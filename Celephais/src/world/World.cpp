@@ -7,7 +7,7 @@
 
 #include "World.hpp"
 
-#include "../world/TalkingBody.hpp"
+#include "../body/TalkingBody.hpp"
 
 World::World(sf::View* view, GameState* gs) {
 	this->d = new std::list<Dialogue>();

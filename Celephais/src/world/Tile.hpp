@@ -8,7 +8,7 @@
 #ifndef WORLD_TILE_HPP_
 #define WORLD_TILE_HPP_
 
-#include "Body.hpp"
+#include "../body/Body.hpp"
 #include <string>
 
 class Tile: public Body {

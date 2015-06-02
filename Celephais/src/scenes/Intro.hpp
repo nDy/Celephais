@@ -8,10 +8,12 @@
 #ifndef SCENES_INTRO_HPP_
 #define SCENES_INTRO_HPP_
 
-#include "../world/Dialogue.h"
+#include "../core/Dialogue.h"
 #include <list>
 
 class Intro: public GameState {
+
+	std::list<int> control;
 
 	std::list<sf::Sprite> background;
 

@@ -6,7 +6,7 @@
  */
 
 #include "Body.hpp"
-#include "Map.hpp"
+#include "../world/Map.hpp"
 
 Body::Body() {
 	this->type = Body::SILENT;

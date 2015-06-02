@@ -9,7 +9,7 @@
 #define WORLD_TALKINGBODY_HPP_
 
 #include "Body.hpp"
-#include "Dialogue.h"
+#include "../core/Dialogue.h"
 #include <list>
 
 class TalkingBody: public Body {

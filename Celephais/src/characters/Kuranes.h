@@ -7,7 +7,7 @@
 
 #ifndef CHARACTERS_KURANES_H_
 #define CHARACTERS_KURANES_H_
-#include "../world/Body.hpp"
+#include "../body/Body.hpp"
 
 class Kuranes: public Body {
 	unsigned int orientation;
