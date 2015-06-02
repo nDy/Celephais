@@ -45,12 +45,14 @@ Dialogue::~Dialogue() {
 
 void Dialogue::drawOverCinematic() {
 	sf::RectangleShape bg;
-	bg.setSize(sf::Vector2f(800 - 20, 2 * 600 / 5));
+	bg.setSize(
+			sf::Vector2f(this->gs->game->window.getSize().x - 20,
+					2 * this->gs->game->window.getSize().y / 5));
 	bg.setOutlineColor(sf::Color::Black);
 	bg.setOutlineThickness(5);
 	bg.setFillColor(sf::Color(0, 0, 0, 180));
-	bg.setPosition(10, 400 + 50);
-	this->text->setPosition(40, 400 + 70);
+	bg.setPosition(10, this->gs->game->window.getSize().x / 2 - 55);
+	this->text->setPosition(40, this->gs->game->window.getSize().x / 2 - 35);
 	this->gs->game->window.draw(bg);
 	this->gs->game->window.draw(*text);
 }

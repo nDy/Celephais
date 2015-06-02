@@ -12,7 +12,7 @@
 
 class GameStateGameplay: public GameState {
 public:
-	GameStateGameplay(Game*, TextureManager*);
+	GameStateGameplay(Game*, TextureManager*, GameState*);
 	virtual ~GameStateGameplay();
 };
 

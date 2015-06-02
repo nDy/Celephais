@@ -7,7 +7,8 @@
 
 #include "GameStateGameplay.hpp"
 
-GameStateGameplay::GameStateGameplay(Game* g, TextureManager* tx) :
+GameStateGameplay::GameStateGameplay(Game* g, TextureManager* tx,
+		GameState* next) :
 		GameState(g, tx) {
 	// TODO Auto-generated constructor stub
 

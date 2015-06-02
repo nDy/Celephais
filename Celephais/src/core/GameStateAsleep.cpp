@@ -9,9 +9,8 @@
 
 GameStateAsleep::GameStateAsleep(Game* game) :
 		GameState(game, new TextureManager()) {
-	this->view = new sf::View();
-	this->world = new World(this->view, this);
-	this->game->window.setView(*this->view);
+	this->world = new World(&view, this);
+
 }
 
 void GameStateAsleep::loadTextures() {
@@ -20,6 +19,7 @@ void GameStateAsleep::loadTextures() {
 
 void GameStateAsleep::draw(const float dt) {
 
+	this->game->window.setView(this->view);
 	this->world->draw();
 
 }
@@ -39,11 +39,11 @@ void GameStateAsleep::handleInput() {
 			break;
 		}
 			/* Resize the window
-		case sf::Event::Resized: {
-			this->view->setSize(event.size.width, event.size.height);
-			break;
-		}
-		*/
+			 case sf::Event::Resized: {*
+			 this->view->setSize(event.size.width, event.size.height);
+			 break;
+			 }*
+			 */
 		case sf::Event::KeyPressed: {
 			world->handleEvents(event);
 		}
@@ -52,6 +52,10 @@ void GameStateAsleep::handleInput() {
 			break;
 		}
 	}
+}
+
+void GameStateAsleep::setNext(GameState* gs) {
+	this->nextState = gs;
 }
 
 GameStateAsleep::~GameStateAsleep() {

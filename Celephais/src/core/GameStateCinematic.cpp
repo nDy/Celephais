@@ -6,14 +6,21 @@
  */
 
 #include "GameStateCinematic.hpp"
-#include "../core/GameStateAsleep.hpp"
 
-GameStateCinematic::GameStateCinematic(Game* g, TextureManager* tx) :
+GameStateCinematic::GameStateCinematic(Game* g, TextureManager* tx,
+		GameState* n) :
 		GameState(g, tx) {
+
+	this->setNext(n);
 	this->c = 0;
 	next = false;
 	activateNext = 0;
 	this->d = new std::list<Dialogue>();
+
+	sf::Vector2f pos = sf::Vector2f(this->game->window.getSize());
+	this->view.setSize(pos);
+	pos *= 0.5f;
+	this->view.setCenter(pos);
 
 }
 
@@ -33,6 +40,7 @@ void GameStateCinematic::addBackground(std::string name, std::string file) {
 }
 
 void GameStateCinematic::draw(const float dt) {
+	this->game->window.setView(this->view);
 	if (!this->background.empty())
 		this->game->window.draw(this->background.front());
 
@@ -50,7 +58,7 @@ void GameStateCinematic::update(const float dt) {
 	}
 
 	if (this->control.empty()) {
-		this->game->changeState(new GameStateAsleep(this->game));
+		this->game->changeState(this->nextState);
 	} else if (this->c == this->control.front()) {
 		this->background.pop_front();
 		this->control.pop_front();
@@ -73,12 +81,19 @@ void GameStateCinematic::handleInput() {
 				&& this->activateNext >= 0.25) {
 			if (!this->d->empty())
 				this->next = true;
+			else {
+				this->game->changeState(this->nextState);
+			}
 		}
 	}
 
 }
 
 void GameStateCinematic::loadTextures() {
+}
+
+void GameStateCinematic::setNext(GameState* gs) {
+	this->nextState = gs;
 }
 
 GameStateCinematic::~GameStateCinematic() {

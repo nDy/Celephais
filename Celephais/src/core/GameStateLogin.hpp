@@ -21,6 +21,7 @@ public:
 	void handleInput();
 	void loadgame();
 	void loadTextures();
+	void setNext(GameState*);
 
 	virtual ~GameStateLogin();
 };

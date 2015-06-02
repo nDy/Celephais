@@ -15,7 +15,7 @@ class GameStateAsleep: public GameState {
 public:
 	World* world;
 private:
-	sf::View* view;
+	sf::View view;
 
 public:
 	GameStateAsleep(Game* game);
@@ -24,6 +24,7 @@ public:
 	void update(const float dt);
 	void handleInput();
 	void loadTextures();
+	void setNext(GameState*);
 
 	virtual ~GameStateAsleep();
 };

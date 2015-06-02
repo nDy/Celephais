@@ -14,6 +14,8 @@
 #include <string>
 
 class GameStateCinematic: public GameState {
+private:
+	sf::View view;
 
 	std::list<Dialogue>* d;
 	std::list<sf::Sprite> background;
@@ -25,7 +27,7 @@ class GameStateCinematic: public GameState {
 	bool next;
 
 public:
-	GameStateCinematic(Game*, TextureManager*);
+	GameStateCinematic(Game*, TextureManager*, GameState*);
 	void addDialogue(const Dialogue&);
 	void addBackground(std::string, std::string);
 
@@ -33,6 +35,7 @@ public:
 	void update(const float);
 	void handleInput();
 	void loadTextures();
+	void setNext(GameState*);
 
 	virtual ~GameStateCinematic();
 };

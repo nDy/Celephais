@@ -8,6 +8,7 @@
 #include "GameState.hpp"
 
 GameState::GameState(Game* g, TextureManager* tex) {
+	this->nextState = nullptr;
 	this->game = g;
 	this->texmgr = tex;
 }

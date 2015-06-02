@@ -15,12 +15,11 @@ GameStateLogin::GameStateLogin(Game* game) :
 	this->view.setSize(pos);
 	pos *= 0.5f;
 	this->view.setCenter(pos);
+
+	this->game->window.setView(this->view);
 }
 
 void GameStateLogin::draw(const float dt) {
-	this->game->window.setView(this->view);
-
-	this->game->window.clear(sf::Color::Black);
 
 }
 
@@ -59,8 +58,12 @@ void GameStateLogin::loadTextures() {
 }
 
 void GameStateLogin::loadgame() {
-	this->game->pushState(new Intro(this->game));
+	this->setNext(new Intro(this->game));
+	this->game->pushState(this->nextState);
 	return;
+}
+void GameStateLogin::setNext(GameState* gs) {
+	this->nextState = gs;
 }
 
 GameStateLogin::~GameStateLogin() {

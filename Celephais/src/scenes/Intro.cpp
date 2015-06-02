@@ -6,12 +6,13 @@
  */
 
 #include "Intro.hpp"
+#include "../core/GameStateAsleep.hpp"
 
 Intro::Intro(Game* game) :
-		GameStateCinematic(game, new TextureManager()) {
+		GameStateCinematic(game, new TextureManager(),
+				new GameStateAsleep(game)) {
 
 // intro buildup
-
 	this->addDialogue(
 			Dialogue("In a dream Kuranes saw the city in the valley...", this));
 
