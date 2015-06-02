@@ -8,14 +8,15 @@
 
 #include "core/Game.hpp"
 #include "core/GameStateLogin.hpp"
+#include "scenes/Intro.hpp"
 
-int main(int argc, char **argv){
+int main(int argc, char **argv) {
 
-    Game game;
+	Game game;
 
-    game.pushState(new GameStateLogin(&game));
+	game.pushState(new GameStateLogin(&game));
 
-    game.gameLoop();
+	game.gameLoop();
 
 	return 0;
 }

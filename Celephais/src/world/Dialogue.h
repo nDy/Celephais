@@ -19,6 +19,7 @@ class Dialogue {
 public:
 	Dialogue(std::string, GameState*);
 	void draw();
+	void drawOverCinematic();
 	virtual ~Dialogue();
 };
 

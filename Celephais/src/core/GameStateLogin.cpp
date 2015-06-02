@@ -7,7 +7,7 @@
 
 #include "GameStateLogin.hpp"
 
-#include "GameStateAsleep.hpp"
+#include "../scenes/Intro.hpp"
 
 GameStateLogin::GameStateLogin(Game* game) :
 		GameState(game, new TextureManager()) {
@@ -55,15 +55,13 @@ void GameStateLogin::handleInput() {
 	}
 }
 void GameStateLogin::loadTextures() {
-
 	return;
 }
 
 void GameStateLogin::loadgame() {
-	this->game->pushState(new GameStateAsleep(this->game));
+	this->game->pushState(new Intro(this->game));
 	return;
 }
 
 GameStateLogin::~GameStateLogin() {
-	// TODO Auto-generated destructor stub
 }

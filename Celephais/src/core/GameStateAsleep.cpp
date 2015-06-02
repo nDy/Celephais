@@ -20,8 +20,6 @@ void GameStateAsleep::loadTextures() {
 
 void GameStateAsleep::draw(const float dt) {
 
-	this->game->window.clear(sf::Color::Black);
-
 	this->world->draw();
 
 }
