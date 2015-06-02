@@ -38,11 +38,12 @@ void GameStateAsleep::handleInput() {
 			game->window.close();
 			break;
 		}
-			/* Resize the window */
+			/* Resize the window
 		case sf::Event::Resized: {
 			this->view->setSize(event.size.width, event.size.height);
 			break;
 		}
+		*/
 		case sf::Event::KeyPressed: {
 			world->handleEvents(event);
 		}

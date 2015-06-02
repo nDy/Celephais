@@ -19,7 +19,7 @@ Dialogue::Dialogue(std::string str, GameState* gs) {
 	this->text->setString(str);
 	this->text->setCharacterSize(24);
 	this->text->setColor(sf::Color::White);
-	this->text->setStyle(sf::Text::Bold | sf::Text::Underlined);
+	//this->text->setStyle(sf::Text::Bold | sf::Text::Underlined);
 }
 
 void Dialogue::draw() {

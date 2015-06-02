@@ -15,42 +15,41 @@ Intro::Intro(Game* game) :
 	this->d = new std::list<Dialogue>();
 
 // intro buildup
-	this->texmgr->loadTexture("first", "media/background.png");
+	this->texmgr->loadTexture("first", "media/Intro/View1.png");
 	sf::Sprite first;
 	first.setTexture(this->texmgr->getRef("first"));
+	first.scale(0.7, 0.7);
+	first.setPosition(-50, 0);
 	this->background.push_back(first);
 
 	std::list<Dialogue> chatterings;
 	chatterings.push_back(
 			Dialogue("In a dream Kuranes saw the city in the valley...", this));
 	chatterings.push_back(
-			Dialogue(
-					"and the seacoast beyond, and the snowy peak overlooking the sea",
-					this));
-	chatterings.push_back(
-			Dialogue(
-					"and the gaily painted galleys that sail out of the harbour",
-					this));
-	chatterings.push_back(
-			Dialogue("toward distant regions where the sea meets the sky...",
-					this));
+			Dialogue("...and the seacoast beyond, and the snowy peak...", this));
+	chatterings.push_back(Dialogue("...overlooking the sea", this));
+	chatterings.push_back(Dialogue("And the gaily painted galleys...", this));
+	chatterings.push_back(Dialogue("...that sail out of the harbor", this));
+	chatterings.push_back(Dialogue("Toward distant regions where...", this));
+	chatterings.push_back(Dialogue("...where the sea meets the sky.", this));
 
 	for (std::list<Dialogue>::iterator it = chatterings.begin();
 			it != chatterings.end(); it++)
 		d->push_back(*it);
 
-	this->texmgr->loadTexture("second", "media/background.png");
+	this->texmgr->loadTexture("second", "media/Intro/View2.png");
 	sf::Sprite sec;
 	sec.setTexture(this->texmgr->getRef("second"));
+	sec.scale(0.7, 0.7);
+	sec.setPosition(-50, 0);
 	this->background.push_back(sec);
 
 	chatterings.clear();
+	chatterings.push_back(Dialogue("In a dream it was also...", this));
 	chatterings.push_back(
-			Dialogue(
-					"In a dream it was also that he came by his name of Kuranes",
-					this));
+			Dialogue("that he came by his name of Kuranes...", this));
 	chatterings.push_back(
-			Dialogue("for when awake he was called by another name", this));
+			Dialogue("for when awake he was called by another name.", this));
 
 	for (std::list<Dialogue>::iterator it = chatterings.begin();
 			it != chatterings.end(); it++)
@@ -92,6 +91,12 @@ void Intro::handleInput() {
 	sf::Event event;
 
 	while (this->game->window.pollEvent(event)) {
+		/* Close the window */
+
+		if (event.type == sf::Event::Closed) {
+			game->window.close();
+			return;
+		}
 		if (this->activateNext >= 0.25) {
 			if (!this->d->empty())
 				this->dialogueEvents(event);
