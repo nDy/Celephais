@@ -9,8 +9,8 @@
 #define WORLD_TALKINGBODY_HPP_
 
 #include "Body.hpp"
-#include "../core/Dialogue.h"
 #include <list>
+#include "../core/Dialogue.hpp"
 
 class TalkingBody: public Body {
 	std::list<Dialogue> d;

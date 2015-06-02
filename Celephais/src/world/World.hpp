@@ -12,8 +12,8 @@
 #include "../body/Body.hpp"
 #include "../characters/Kuranes.h"
 #include "../core/GameState.hpp"
-#include "../core/Dialogue.h"
 #include <list>
+#include "../core/Dialogue.hpp"
 
 class World {
 

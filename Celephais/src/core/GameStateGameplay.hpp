@@ -5,8 +5,8 @@
  *      Author: ndy
  */
 
-#ifndef CORE_GAMESTATEGAMEPLAY_H_
-#define CORE_GAMESTATEGAMEPLAY_H_
+#ifndef CORE_GAMESTATEGAMEPLAY_HPP_
+#define CORE_GAMESTATEGAMEPLAY_HPP_
 
 #include "GameState.hpp"
 
@@ -16,4 +16,4 @@ public:
 	virtual ~GameStateGameplay();
 };
 
-#endif /* CORE_GAMESTATEGAMEPLAY_H_ */
+#endif /* CORE_GAMESTATEGAMEPLAY_HPP_ */

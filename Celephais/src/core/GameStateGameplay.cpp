@@ -5,7 +5,7 @@
  *      Author: ndy
  */
 
-#include "GameStateGameplay.h"
+#include "GameStateGameplay.hpp"
 
 GameStateGameplay::GameStateGameplay(Game* g, TextureManager* tx) :
 		GameState(g, tx) {

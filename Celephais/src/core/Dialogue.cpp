@@ -5,7 +5,8 @@
  *      Author: ndy
  */
 
-#include "Dialogue.h"
+#include "Dialogue.hpp"
+
 #include "../core/GameStateAsleep.hpp"
 
 Dialogue::Dialogue(std::string str, GameState* gs) {
