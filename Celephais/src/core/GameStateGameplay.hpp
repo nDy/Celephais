@@ -9,10 +9,24 @@
 #define CORE_GAMESTATEGAMEPLAY_HPP_
 
 #include "GameState.hpp"
+#include "../world/World.hpp"
 
 class GameStateGameplay: public GameState {
+
 public:
-	GameStateGameplay(Game*, TextureManager*, GameState*);
+	World* world;
+private:
+	sf::View view;
+
+public:
+	GameStateGameplay(Game*, TextureManager*, GameState*, unsigned int,
+			unsigned int);
+
+	void draw(const float dt);
+	void update(const float dt);
+	void handleInput();
+	void loadTextures();
+	void setNext(GameState*);
 	virtual ~GameStateGameplay();
 };
 

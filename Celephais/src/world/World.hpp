@@ -27,14 +27,18 @@ class World {
 
 	std::list<Dialogue>* d;
 
+	bool __insertBody(Body*, unsigned int, unsigned int);
+
 public:
 	Kuranes* player;
 
-	World(sf::View*, GameState*);
+	World(sf::View*, GameState*, unsigned int, unsigned int);
 	void handleEvents(sf::Event);
 	void mapEvents(sf::Event);
 	void dialogueEvents(sf::Event);
 	void draw();
+	Body*& insertBody(std::string, std::string, unsigned int, unsigned int,
+			unsigned int);
 	virtual ~World();
 };
 

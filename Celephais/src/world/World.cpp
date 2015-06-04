@@ -9,40 +9,46 @@
 
 #include "../body/TalkingBody.hpp"
 
-World::World(sf::View* view, GameState* gs) {
+World::World(sf::View* view, GameState* gs, unsigned int sizex,
+		unsigned int sizey) {
 	this->d = new std::list<Dialogue>();
 	this->view = view;
 	this->gs = gs;
-	this->map = new Map(60, 58, this->gs);
+	this->map = new Map(sizex, sizey, this->gs); //60*58
 	this->view->setSize(800, 600);
 	this->view->setCenter(400, 300);
 
 	this->player = new Kuranes(this->gs, this->map, 12, 18);
-	this->map->at(4, 0)->top = new Body("Obstacle", "media/testToken.png",
-			this->gs, this->map, 4, 0, Body::SILENT);
-	this->map->at(4, 1)->top = new Body("Obstacle", "media/testToken.png",
-			this->gs, this->map, 4, 1, Body::SILENT);
-	this->map->at(4, 2)->top = new Body("Obstacle", "media/testToken.png",
-			this->gs, this->map, 4, 2, Body::SILENT);
-	this->map->at(4, 3)->top = new Body("Obstacle", "media/testToken.png",
-			this->gs, this->map, 4, 3, Body::SILENT);
-	this->map->at(4, 4)->top = new Body("Obstacle", "media/testToken.png",
-			this->gs, this->map, 4, 4, Body::SILENT);
-
-	TalkingBody* peter;
-	peter = new TalkingBody("Peter", "media/Peter.png", this->gs, this->map, 18,
-			25);
-	std::list<Dialogue> chatterings;
-	chatterings.push_back(Dialogue("Hello I am peter!", this->gs));
-	chatterings.push_back(Dialogue("Welcome to Celephais!", this->gs));
-	peter->setDialogue(chatterings);
-
-	this->map->at(18, 25)->top = peter;
 
 	this->view->setCenter(player->getx(), player->gety());
 	oldx = player->getx();
 	oldy = player->gety();
 
+}
+
+bool World::__insertBody(Body* top, unsigned int x, unsigned int y) {
+	if (this->map->at(x, y)->top != nullptr)
+		return false;
+	this->map->at(x, y)->top = top;
+	return true;
+}
+
+Body*& World::insertBody(std::string name, std::string file, unsigned int type,
+		unsigned int x, unsigned int y) {
+	static Body* aux;
+	switch (type) {
+	case Body::SILENT:
+		aux = new Body(name, file, this->gs, this->map, x, y, type);
+		break;
+	case Body::TALKING:
+		aux = new TalkingBody(name, file, this->gs, this->map, x, y);
+		break;
+	default:
+		break;
+	}
+
+	this->__insertBody(aux, x, y);
+	return aux;
 }
 
 World::~World() {

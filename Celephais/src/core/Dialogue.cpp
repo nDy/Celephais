@@ -7,7 +7,7 @@
 
 #include "Dialogue.hpp"
 
-#include "../core/GameStateAsleep.hpp"
+#include "../core/GameStateGameplay.hpp"
 
 Dialogue::Dialogue(std::string str, GameState* gs) {
 	this->f = new sf::Font();
@@ -30,11 +30,11 @@ void Dialogue::draw() {
 	bg.setOutlineThickness(5);
 	bg.setFillColor(sf::Color(0, 0, 0, 180));
 	bg.setPosition(
-			((GameStateAsleep*) this->gs)->world->player->getx() - 400 + 10,
-			((GameStateAsleep*) this->gs)->world->player->gety() + 50);
+			((GameStateGameplay*) this->gs)->world->player->getx() - 400 + 10,
+			((GameStateGameplay*) this->gs)->world->player->gety() + 50);
 	this->text->setPosition(
-			((GameStateAsleep*) this->gs)->world->player->getx() - 400 + 40,
-			((GameStateAsleep*) this->gs)->world->player->gety() + 70);
+			((GameStateGameplay*) this->gs)->world->player->getx() - 400 + 40,
+			((GameStateGameplay*) this->gs)->world->player->gety() + 70);
 	this->gs->game->window.draw(bg);
 	this->gs->game->window.draw(*text);
 }
