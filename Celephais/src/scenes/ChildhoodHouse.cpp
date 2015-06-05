@@ -8,12 +8,10 @@
 #include "ChildhoodHouse.hpp"
 
 #include "../body/TalkingBody.hpp"
-#include "../world/Tile.hpp"
 #include "../body/Body.hpp"
 #include "../core/Dialogue.hpp"
-#include <string>
+
 #include <list>
-#include <iostream>
 
 ChildhoodHouse::ChildhoodHouse(Game* g) :
 		GameStateGameplay(g, new TextureManager(), nullptr, 60, 58) {

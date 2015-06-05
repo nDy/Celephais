@@ -6,7 +6,7 @@
  */
 
 #include "Map.hpp"
-#include <iostream>
+
 Map::Map(unsigned int x, unsigned int y, GameState* gs) {
 	this->map.resize(y);
 	for (unsigned int i = 0; i < y; ++i) {

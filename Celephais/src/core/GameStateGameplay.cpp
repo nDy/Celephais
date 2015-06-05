@@ -6,7 +6,6 @@
  */
 
 #include "GameStateGameplay.hpp"
-#include <iostream>
 
 GameStateGameplay::GameStateGameplay(Game* g, TextureManager* tx,
 		GameState* next, unsigned int sizex, unsigned int sizey) :
