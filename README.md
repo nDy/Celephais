@@ -8,9 +8,9 @@ Kuranes finds a beautiful city in his dreams, from that moment, he spends his li
 A first version of a homemade engine for tile based rpgs, new versions will be released optimizing memory usage and processing time.
 
 ## The Team
-Lead Programmer: Andres Rangel
+Lead Programmer: Andres Rangel (ndy.work@gmail.com)
 
-Lead Designer: Oriana Torcat
+Lead Designer: Oriana Torcat (oriinthesky@hotmail.com)
 
 ## The License
 The precise and very well written GNU GPL v3
