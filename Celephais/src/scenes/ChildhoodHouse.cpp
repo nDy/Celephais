@@ -8,12 +8,17 @@
 #include "ChildhoodHouse.hpp"
 
 #include "../body/TalkingBody.hpp"
+#include "../world/Tile.hpp"
+#include "../body/Body.hpp"
 #include "../core/Dialogue.hpp"
+#include <string>
 #include <list>
+#include <iostream>
 
 ChildhoodHouse::ChildhoodHouse(Game* g) :
 		GameStateGameplay(g, new TextureManager(), nullptr, 60, 58) {
-//replace with pointer to next scene
+
+	//replace with pointer to next scene
 	this->setNext(nullptr);
 
 	this->world->insertBody("Obstacle", "media/testToken.png", Body::SILENT, 4,
@@ -26,6 +31,23 @@ ChildhoodHouse::ChildhoodHouse(Game* g) :
 			3);
 	this->world->insertBody("Obstacle", "media/testToken.png", Body::SILENT, 4,
 			4);
+
+	this->texmgr->loadTexture("Grass1", "media/tiles/Grass1.png");
+	this->texmgr->loadTexture("Grass2", "media/tiles/Grass2.png");
+
+	for (unsigned int i = 0; i < this->world->sizeY(); ++i) {
+		for (unsigned int j = 0; j < this->world->sizeX(); ++j) {
+			if (i % 2 == 0) {
+				this->world->at(j, i)->setName("Grass1");
+				this->world->at(j, i)->setTexture(
+						this->texmgr->getRef("Grass1"));
+			} else {
+				this->world->at(j, i)->setName("Grass2");
+				this->world->at(j, i)->setTexture(
+						this->texmgr->getRef("Grass2"));
+			}
+		}
+	}
 
 	TalkingBody* peter;
 	peter = (TalkingBody*) this->world->insertBody("Peter", "media/Peter.png",

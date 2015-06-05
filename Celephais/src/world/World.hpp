@@ -19,8 +19,6 @@ class World {
 
 	unsigned int oldx, oldy;
 
-	Map* map;
-
 	sf::View* view;
 
 	GameState* gs;
@@ -32,6 +30,8 @@ class World {
 public:
 	Kuranes* player;
 
+	Map* map;
+
 	World(sf::View*, GameState*, unsigned int, unsigned int);
 	void handleEvents(sf::Event);
 	void mapEvents(sf::Event);
@@ -39,6 +39,10 @@ public:
 	void draw();
 	Body*& insertBody(std::string, std::string, unsigned int, unsigned int,
 			unsigned int);
+	Tile*& at(unsigned int, unsigned int);
+	void setTile(Tile, unsigned int, unsigned int);
+	unsigned int sizeX();
+	unsigned int sizeY();
 	virtual ~World();
 };
 

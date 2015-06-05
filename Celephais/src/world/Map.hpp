@@ -14,16 +14,17 @@
 
 class Map {
 private:
-	std::vector<std::vector<Tile> > map;
+	std::vector<std::vector<Tile*> > map;
 	GameState* gs;
-	sf::Sprite background;
+	//sf::Sprite background;
 
 public:
 	Map(unsigned int, unsigned int, GameState*);
 	void draw();
 	unsigned int getDimX();
 	unsigned int getDimY();
-	Tile* at(unsigned int, unsigned int);
+	Tile*& at(unsigned int, unsigned int);
+	void setTile(Tile*, unsigned int, unsigned int);
 	virtual ~Map();
 };
 

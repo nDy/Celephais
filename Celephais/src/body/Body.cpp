@@ -20,7 +20,7 @@ Body::Body() {
 Body::Body(std::string name, std::string file, GameState* g, Map* m,
 		unsigned int x, unsigned int y, unsigned int type) {
 	this->type = type;
-	this->name = name;
+	this->name.append(name);
 	this->gs = g;
 	this->map = m;
 	this->gs->texmgr->loadTexture(name, file);
@@ -64,12 +64,24 @@ std::string Body::getName() {
 	return this->name;
 }
 
+sf::Texture* Body::getTexture() {
+	return (sf::Texture*) this->img.getTexture();
+}
+
+void Body::setName(const std::string& name) {
+	this->name = name;
+}
+
 unsigned int Body::getType() {
 	return this->type;
 }
 
 void Body::setType(unsigned int type) {
 	this->type = type;
+}
+
+void Body::setMap(Map* m) {
+	this->map = m;
 }
 
 Body::~Body() {

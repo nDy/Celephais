@@ -160,3 +160,15 @@ void World::mapEvents(sf::Event event) {
 		}
 	}
 }
+
+Tile*& World::at(unsigned int x, unsigned int y) {
+	return this->map->at(x, y);
+}
+
+unsigned int World::sizeX() {
+	return this->map->getDimX();
+}
+
+unsigned int World::sizeY() {
+	return this->map->getDimY();
+}

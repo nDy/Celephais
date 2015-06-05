@@ -6,6 +6,7 @@
  */
 
 #include "Tile.hpp"
+#include <iostream>
 
 Tile::Tile() :
 		Body() {
@@ -23,7 +24,8 @@ Tile::~Tile() {
 	// TODO Auto-generated destructor stub
 }
 
-void Tile::draw() {
+void Tile::drawTile() {
+
 	if (this->getName().size() != 0)
 		this->draw();
 	if (this->top != nullptr)

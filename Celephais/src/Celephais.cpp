@@ -12,7 +12,7 @@
 
 int main(int argc, char **argv) {
 
-	Game game;
+ 	Game game;
 
 	game.pushState(new GameStateLogin(&game));
 

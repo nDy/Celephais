@@ -33,14 +33,21 @@ public:
 	Body(std::string, std::string, GameState*, Map*, unsigned int, unsigned int,
 			unsigned int);
 	void draw();
+
 	bool setPos(unsigned int, unsigned int);
 	void setTexture(sf::Texture&);
+	void setType(unsigned int type);
+	void setName(const std::string& name);
+	void setMap(Map*);
+
+	sf::Texture* getTexture();
 	unsigned int getx();
 	unsigned int gety();
 	std::string getName();
-	virtual ~Body();
-	void setType(unsigned int type);
 	unsigned int getType();
+
+	virtual ~Body();
+
 };
 
 #endif /* WORLD_BODY_HPP_ */

@@ -6,6 +6,7 @@
  */
 
 #include "GameStateGameplay.hpp"
+#include <iostream>
 
 GameStateGameplay::GameStateGameplay(Game* g, TextureManager* tx,
 		GameState* next, unsigned int sizex, unsigned int sizey) :
@@ -21,8 +22,8 @@ void GameStateGameplay::loadTextures() {
 }
 
 void GameStateGameplay::draw(const float dt) {
-
 	this->game->window.setView(this->view);
+
 	this->world->draw();
 
 }
