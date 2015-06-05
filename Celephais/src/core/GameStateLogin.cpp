@@ -17,10 +17,13 @@ GameStateLogin::GameStateLogin(Game* game) :
 	this->view.setCenter(pos);
 
 	this->game->window.setView(this->view);
+
+	//open db connection
 }
 
 void GameStateLogin::draw(const float dt) {
-
+	//draw username textbox
+	//draw pass textbox
 }
 
 void GameStateLogin::update(const float dt) {
@@ -41,6 +44,8 @@ void GameStateLogin::handleInput() {
 			this->view.setSize(event.size.width, event.size.height);
 			break;
 		}
+
+		//get input from string
 		case sf::Event::KeyPressed: {
 			if (event.key.code == sf::Keyboard::Escape)
 				this->game->window.close();
