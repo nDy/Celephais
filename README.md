@@ -9,6 +9,7 @@ A first version of a homemade engine for tile based rpgs, new versions will be r
 
 ## The Team
 Lead Programmer: Andres Rangel
+
 Lead Designer: Oriana Torcat
 
 ## The License
