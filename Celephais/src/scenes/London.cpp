@@ -5,31 +5,37 @@
  *      Author: ndy
  */
 
-#include "ChildhoodHouse.hpp"
+#include "London.hpp"
 
 #include "../body/TalkingBody.hpp"
 #include "../body/Body.hpp"
 #include "../core/Dialogue.hpp"
+#include "Room.hpp"
 
 #include <list>
 
-ChildhoodHouse::ChildhoodHouse(Game* g) :
-		GameStateGameplay(g, new TextureManager(), nullptr, 24, 15 , 2, 2) {
+London::London(Game* g) :
+		GameStateGameplay(g, new TextureManager(), nullptr, 50, 50, 2, 2) {
 
 	//replace with pointer to next scene
-	this->setNext(nullptr);
+	this->setNext(new Room(g));
+	this->setExit(49, 5);
 
-	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 3, 2);
-	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 7, 2);
-	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 17,
+	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 23,
 			2);
-	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 20,
+	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 27,
 			2);
-	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 3, 7);
-	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 7, 7);
-	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 17,
+	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 37,
+			2);
+	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 40,
+			2);
+	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 23,
 			7);
-	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 20,
+	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 27,
+			7);
+	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 37,
+			7);
+	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 40,
 			7);
 
 	this->texmgr->loadTexture("Grass1", "media/tiles/Grass1.png");
@@ -58,13 +64,21 @@ ChildhoodHouse::ChildhoodHouse(Game* g) :
 			Body::TALKING, 12, 4);
 
 	std::list<Dialogue> chatterings;
-	chatterings.push_back(Dialogue("Hello I am peter!", this));
-	chatterings.push_back(Dialogue("Welcome to Celephais!", this));
+	chatterings.push_back(
+			Dialogue("Perhaps it was natural for heam to dream a new name",
+					this));
+	chatterings.push_back(Dialogue("For he was the last of his family", this));
+	chatterings.push_back(
+			Dialogue("And alone among the indifferent millions of London",
+					this));
+	chatterings.push_back(
+			Dialogue("So there were not many to speak to him", this));
+	chatterings.push_back(Dialogue("And remind him who he had been.", this));
 	peter->setDialogue(chatterings);
 
 }
 
-ChildhoodHouse::~ChildhoodHouse() {
+London::~London() {
 	// TODO Auto-generated destructor stub
 }
 

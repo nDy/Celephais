@@ -14,6 +14,9 @@ GameStateGameplay::GameStateGameplay(Game* g, TextureManager* tx,
 
 	this->setNext(next);
 
+	this->exitX = 0;
+	this->exitY = 0;
+
 	this->world = new World(&view, this, sizex, sizey, playerPosx, playerPosy);
 
 }
@@ -30,7 +33,9 @@ void GameStateGameplay::draw(const float dt) {
 }
 
 void GameStateGameplay::update(const float dt) {
-
+	if (this->world->player->getx() / 32 == this->exitX
+			&& this->world->player->gety() / 32 == this->exitY)
+		this->game->changeState(this->nextState);
 }
 
 void GameStateGameplay::handleInput() {
@@ -61,6 +66,11 @@ void GameStateGameplay::handleInput() {
 
 void GameStateGameplay::setNext(GameState* gs) {
 	this->nextState = gs;
+}
+
+void GameStateGameplay::setExit(unsigned int x, unsigned int y) {
+	this->exitX = x;
+	this->exitY = y;
 }
 
 GameStateGameplay::~GameStateGameplay() {

@@ -6,12 +6,13 @@
  */
 
 #include "Intro.hpp"
-#include "ChildhoodHouse.hpp"
+
+#include "London.hpp"
 
 Intro::Intro(Game* game) :
 		GameStateCinematic(game, new TextureManager(), nullptr) {
 
-	this->setNext(new ChildhoodHouse(game));
+	this->setNext(new London(game));
 
 // intro buildup
 	this->addDialogue(
