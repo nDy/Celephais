@@ -22,24 +22,24 @@ London::London(Game* g) :
 	this->setExit(34, 11);
 
 	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 13,
-			9);
+			8);
 	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 17,
-			9);
+			8);
 	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 25,
-			9);
+			8);
 	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 29,
-			9);
+			8);
 
 	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 13,
-			13);
+			14);
 	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 17,
-			13);
+			14);
 	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 21,
-			13);
+			14);
 	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 25,
-			13);
+			14);
 	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 29,
-			13);
+			14);
 
 	this->texmgr->loadTexture("Grass1", "media/tiles/Grass1.png");
 	this->texmgr->loadTexture("Water1", "media/tiles/Water1.png");
@@ -47,25 +47,29 @@ London::London(Game* g) :
 
 	for (unsigned int i = 0; i < this->world->sizeY(); ++i) {
 		for (unsigned int j = 0; j < this->world->sizeX(); ++j) {
-			if ((i > 9 && i < 13) || (i <= 9 && j >= 20 && j <= 22)) {
-				this->world->at(j, i)->setName("Grass1");
-				this->world->at(j, i)->setTexture(
-						this->texmgr->getRef("Grass1"));
-			} else if (i > 14) {
-				this->world->at(j, i)->setName("Water1");
-				this->world->at(j, i)->setTexture(
-						this->texmgr->getRef("Water1"));
+			if (i >= 7 && j >= 7) {
+				if ((i > 9 && i < 13) || (i <= 9 && j >= 20 && j <= 22)) {
+					this->world->at(j, i)->setName("Grass1");
+					this->world->at(j, i)->setTexture(
+							this->texmgr->getRef("Grass1"));
+				} else if (i > 15) {
+					this->world->at(j, i)->setName("Water1");
+					this->world->at(j, i)->setTexture(
+							this->texmgr->getRef("Water1"));
+				} else {
+					this->world->at(j, i)->setName("Sidewalk1");
+					this->world->at(j, i)->setTexture(
+							this->texmgr->getRef("Sidewalk1"));
+				}
 			} else {
-				this->world->at(j, i)->setName("Sidewalk1");
-				this->world->at(j, i)->setTexture(
-						this->texmgr->getRef("Sidewalk1"));
+				this->world->at(j, i)->setName("Water1");
 			}
 		}
 	}
 
 	TalkingBody* peter;
 	peter = (TalkingBody*) this->world->insertBody("Peter", "media/Peter.png",
-			Body::TALKING, 12, 4);
+			Body::TALKING, 21, 15);
 
 	std::list<Dialogue> chatterings;
 	chatterings.push_back(

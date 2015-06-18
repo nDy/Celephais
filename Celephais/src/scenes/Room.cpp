@@ -11,34 +11,30 @@
 #include "../core/Dialogue.hpp"
 
 Room::Room(Game* g) :
-		GameStateGameplay(g, new TextureManager(), nullptr, 50, 50, 2, 2) {
+		GameStateGameplay(g, new TextureManager(), nullptr, 19, 13, 17, 10) {
+	//replace with pointer to next scene
 	this->setNext(nullptr);
-	this->setExit(49, 5);
+	this->setExit(18, 12);
 
 	this->texmgr->loadTexture("Grass1", "media/tiles/Grass1.png");
-	this->texmgr->loadTexture("Sidewalk2", "media/tiles/Sidewalk2.png");
+	this->texmgr->loadTexture("Water1", "media/tiles/Water1.png");
+	this->texmgr->loadTexture("Sidewalk1", "media/tiles/Sidewalk1.png");
 
 	for (unsigned int i = 0; i < this->world->sizeY(); ++i) {
 		for (unsigned int j = 0; j < this->world->sizeX(); ++j) {
-			if (i == 3 || i == 4 || i == 5 || (i == 2 && (j == 12))
-					|| (i == 2 && (j == 13)) || (i == 2 && (j == 14))
-					|| (i == 1 && (j == 12)) || (i == 1 && (j == 13))
-					|| (i == 1 && (j == 14)) || (i == 0 && (j == 12))
-					|| (i == 0 && (j == 13)) || (i == 0 && (j == 14))) {
-				this->world->at(j, i)->setName("Grass1");
+			if (i >= 7 && j >= 7) {
+				this->world->at(j, i)->setName("Sidewalk1");
 				this->world->at(j, i)->setTexture(
-						this->texmgr->getRef("Grass1"));
+						this->texmgr->getRef("Sidewalk1"));
 			} else {
-				this->world->at(j, i)->setName("Sidewalk2");
-				this->world->at(j, i)->setTexture(
-						this->texmgr->getRef("Sidewalk2"));
+				this->world->at(j, i)->setName("Water1");
 			}
 		}
 	}
 
 	TalkingBody* peter;
 	peter = (TalkingBody*) this->world->insertBody("Peter", "media/Peter.png",
-			Body::TALKING, 12, 4);
+			Body::TALKING, 18, 9);
 
 	std::list<Dialogue> chatterings;
 	chatterings.push_back(
