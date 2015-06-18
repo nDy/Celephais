@@ -15,42 +15,46 @@
 #include <list>
 
 London::London(Game* g) :
-		GameStateGameplay(g, new TextureManager(), nullptr, 50, 50, 2, 2) {
+		GameStateGameplay(g, new TextureManager(), nullptr, 35, 21, 7, 11) {
 
 	//replace with pointer to next scene
 	this->setNext(new Room(g));
-	this->setExit(49, 5);
+	this->setExit(34, 11);
 
-	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 23,
-			2);
-	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 27,
-			2);
-	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 37,
-			2);
-	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 40,
-			2);
-	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 23,
-			7);
-	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 27,
-			7);
-	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 37,
-			7);
-	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 40,
-			7);
+	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 13,
+			9);
+	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 17,
+			9);
+	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 25,
+			9);
+	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 29,
+			9);
+
+	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 13,
+			13);
+	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 17,
+			13);
+	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 21,
+			13);
+	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 25,
+			13);
+	this->world->insertBody("Faro", "media/tiles/Faro.png", Body::SILENT, 29,
+			13);
 
 	this->texmgr->loadTexture("Grass1", "media/tiles/Grass1.png");
+	this->texmgr->loadTexture("Water1", "media/tiles/Water1.png");
 	this->texmgr->loadTexture("Sidewalk1", "media/tiles/Sidewalk1.png");
 
 	for (unsigned int i = 0; i < this->world->sizeY(); ++i) {
 		for (unsigned int j = 0; j < this->world->sizeX(); ++j) {
-			if (i == 3 || i == 4 || i == 5 || (i == 2 && (j == 12))
-					|| (i == 2 && (j == 13)) || (i == 2 && (j == 14))
-					|| (i == 1 && (j == 12)) || (i == 1 && (j == 13))
-					|| (i == 1 && (j == 14)) || (i == 0 && (j == 12))
-					|| (i == 0 && (j == 13)) || (i == 0 && (j == 14))) {
+			if ((i > 9 && i < 13) || (i <= 9 && j >= 20 && j <= 22)) {
 				this->world->at(j, i)->setName("Grass1");
 				this->world->at(j, i)->setTexture(
 						this->texmgr->getRef("Grass1"));
+			} else if (i > 14) {
+				this->world->at(j, i)->setName("Water1");
+				this->world->at(j, i)->setTexture(
+						this->texmgr->getRef("Water1"));
 			} else {
 				this->world->at(j, i)->setName("Sidewalk1");
 				this->world->at(j, i)->setTexture(
