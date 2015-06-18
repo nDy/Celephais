@@ -27,7 +27,8 @@ Body::Body(std::string name, std::string file, GameState* g, Map* m,
 	this->img.setTexture(this->gs->texmgr->getRef(name));
 	this->posx = x;
 	this->posy = y;
-	this->img.setPosition(x * 32, y * 32);
+	this->img.setPosition(x * 32,
+			y * 32 - this->img.getTexture()->getSize().y + 32);
 	this->map->at(x, y)->top = this;
 }
 

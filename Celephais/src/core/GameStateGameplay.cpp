@@ -8,11 +8,13 @@
 #include "GameStateGameplay.hpp"
 
 GameStateGameplay::GameStateGameplay(Game* g, TextureManager* tx,
-		GameState* next, unsigned int sizex, unsigned int sizey) :
+		GameState* next, unsigned int sizex, unsigned int sizey,
+		unsigned int playerPosx, unsigned int playerPosy) :
 		GameState(g, tx) {
+
 	this->setNext(next);
 
-	this->world = new World(&view, this, sizex, sizey);
+	this->world = new World(&view, this, sizex, sizey, playerPosx, playerPosy);
 
 }
 

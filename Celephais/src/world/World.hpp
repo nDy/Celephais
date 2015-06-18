@@ -32,7 +32,8 @@ public:
 
 	Map* map;
 
-	World(sf::View*, GameState*, unsigned int, unsigned int);
+	World(sf::View*, GameState*, unsigned int, unsigned int, unsigned int,
+			unsigned int);
 	void handleEvents(sf::Event);
 	void mapEvents(sf::Event);
 	void dialogueEvents(sf::Event);

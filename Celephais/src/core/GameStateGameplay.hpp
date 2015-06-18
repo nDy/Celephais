@@ -15,18 +15,20 @@ class GameStateGameplay: public GameState {
 
 public:
 	World* world;
+	unsigned int exitX, exitY;
 private:
 	sf::View view;
 
 public:
 	GameStateGameplay(Game*, TextureManager*, GameState*, unsigned int,
-			unsigned int);
+			unsigned int,unsigned int, unsigned int);
 
 	void draw(const float dt);
 	void update(const float dt);
 	void handleInput();
 	void loadTextures();
 	void setNext(GameState*);
+	void setExit(unsigned int,unsigned int);
 	virtual ~GameStateGameplay();
 };
 

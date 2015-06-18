@@ -10,7 +10,7 @@
 #include "../body/TalkingBody.hpp"
 
 World::World(sf::View* view, GameState* gs, unsigned int sizex,
-		unsigned int sizey) {
+		unsigned int sizey, unsigned int pposx, unsigned int pposy) {
 	this->d = new std::list<Dialogue>();
 	this->view = view;
 	this->gs = gs;
@@ -18,7 +18,7 @@ World::World(sf::View* view, GameState* gs, unsigned int sizex,
 	this->view->setSize(800, 600);
 	this->view->setCenter(400, 300);
 
-	this->player = new Kuranes(this->gs, this->map, 12, 18);
+	this->player = new Kuranes(this->gs, this->map, pposx, pposy);
 
 	this->view->setCenter(player->getx(), player->gety());
 	oldx = player->getx();
