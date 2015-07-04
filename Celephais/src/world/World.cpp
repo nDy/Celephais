@@ -18,7 +18,7 @@ World::World(sf::View* view, GameState* gs, unsigned int sizex,
 	this->view->setSize(800, 600);
 	this->view->setCenter(400, 300);
 
-	this->player = new Kuranes(this->gs, this->map, pposx, pposy);
+	this->player = new MovingBody(this->gs, this->map, pposx, pposy);
 
 	this->view->setCenter(player->getx(), player->gety());
 	oldx = player->getx();
@@ -171,4 +171,8 @@ unsigned int World::sizeX() {
 
 unsigned int World::sizeY() {
 	return this->map->getDimY();
+}
+
+void World::update(sf::Time dt) {
+	this->player->update(dt);
 }

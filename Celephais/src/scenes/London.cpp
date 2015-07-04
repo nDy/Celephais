@@ -69,20 +69,34 @@ London::London(Game* g) :
 
 	TalkingBody* peter;
 	peter = (TalkingBody*) this->world->insertBody("Peter", "media/Peter.png",
-			Body::TALKING, 21, 15);
+			Body::TALKING, 15, 15);
 
 	std::list<Dialogue> chatterings;
 	chatterings.push_back(
 			Dialogue("Perhaps it was natural for heam to dream a new name",
 					this));
+
+	peter->setDialogue(chatterings);
+
+	chatterings.clear();
+
+	TalkingBody* lucy;
+
+	lucy = (TalkingBody*) this->world->insertBody("Peter", "media/Peter.png",
+			Body::TALKING, 23, 15);
+
 	chatterings.push_back(Dialogue("For he was the last of his family", this));
 	chatterings.push_back(
 			Dialogue("And alone among the indifferent millions of London",
 					this));
+
+	lucy->setDialogue(chatterings);
+
+	chatterings.clear();
+
 	chatterings.push_back(
 			Dialogue("So there were not many to speak to him", this));
 	chatterings.push_back(Dialogue("And remind him who he had been.", this));
-	peter->setDialogue(chatterings);
 
 }
 

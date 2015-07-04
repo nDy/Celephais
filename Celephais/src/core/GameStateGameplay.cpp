@@ -25,14 +25,15 @@ void GameStateGameplay::loadTextures() {
 
 }
 
-void GameStateGameplay::draw(const float dt) {
+void GameStateGameplay::draw(sf::Time dt) {
 	this->game->window.setView(this->view);
 
 	this->world->draw();
 
 }
 
-void GameStateGameplay::update(const float dt) {
+void GameStateGameplay::update(sf::Time dt) {
+	this->world->update(dt);
 	if (this->world->player->getx() / 32 == this->exitX
 			&& this->world->player->gety() / 32 == this->exitY)
 		this->game->changeState(this->nextState);

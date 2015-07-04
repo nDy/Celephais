@@ -7,7 +7,7 @@
 
 #include "GameStateLogin.hpp"
 
-#include "../scenes/Intro.hpp"
+#include "../scenes/London.hpp"
 
 GameStateLogin::GameStateLogin(Game* game) :
 		GameState(game, new TextureManager()) {
@@ -21,12 +21,12 @@ GameStateLogin::GameStateLogin(Game* game) :
 	//open db connection
 }
 
-void GameStateLogin::draw(const float dt) {
+void GameStateLogin::draw(sf::Time dt) {
 	//draw username textbox
 	//draw pass textbox
 }
 
-void GameStateLogin::update(const float dt) {
+void GameStateLogin::update(sf::Time dt) {
 }
 
 void GameStateLogin::handleInput() {
@@ -63,7 +63,7 @@ void GameStateLogin::loadTextures() {
 }
 
 void GameStateLogin::loadgame() {
-	this->setNext(new Intro(this->game));
+	this->setNext(new London(this->game));
 	this->game->pushState(this->nextState);
 	return;
 }

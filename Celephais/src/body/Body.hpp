@@ -10,6 +10,8 @@
 
 #include <string>
 #include "../core/GameState.hpp"
+#include "../utils/Animation.hpp"
+#include "../utils/AnimatedSprite.hpp"
 
 class Map;
 
@@ -22,16 +24,23 @@ public:
 private:
 	unsigned int type;
 	std::string name;
-	sf::Sprite img;
+	sf::Sprite img; //single framed
+
+	// set up AnimatedSprite
+	AnimatedSprite animatedSprite;
+
 	unsigned int posx, posy;
 
 	//visibilidad del personaje
 	Map* map;
 public:
+
+	Animation* currentAnimation;
 	GameState* gs;
 	Body();
 	Body(std::string, std::string, GameState*, Map*, unsigned int, unsigned int,
 			unsigned int);
+	void update(sf::Time);
 	void draw();
 
 	bool setPos(unsigned int, unsigned int);

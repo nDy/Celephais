@@ -23,8 +23,8 @@ public:
 	GameStateGameplay(Game*, TextureManager*, GameState*, unsigned int,
 			unsigned int,unsigned int, unsigned int);
 
-	void draw(const float dt);
-	void update(const float dt);
+	void draw(sf::Time dt);
+	void update(sf::Time dt);
 	void handleInput();
 	void loadTextures();
 	void setNext(GameState*);

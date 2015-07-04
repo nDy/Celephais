@@ -16,8 +16,8 @@ private:
 public:
 	GameStateLogin(Game* game);
 
-	void draw(const float dt);
-	void update(const float dt);
+	void draw(sf::Time dt);
+	void update(sf::Time dt);
 	void handleInput();
 	void loadgame();
 	void loadTextures();

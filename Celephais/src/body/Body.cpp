@@ -15,6 +15,7 @@ Body::Body() {
 	this->posx = 0;
 	this->posy = 0;
 	this->img.setPosition(0, 0);
+	this->currentAnimation = nullptr;
 }
 
 Body::Body(std::string name, std::string file, GameState* g, Map* m,
@@ -30,10 +31,17 @@ Body::Body(std::string name, std::string file, GameState* g, Map* m,
 	this->img.setPosition(x * 32,
 			y * 32 - this->img.getTexture()->getSize().y + 32);
 	this->map->at(x, y)->top = this;
+	this->currentAnimation = nullptr;
 }
-
+void Body::update(sf::Time dt) {
+	animatedSprite.update(dt);
+}
 void Body::draw() {
-	this->gs->game->window.draw(this->img);
+	if (this->getType() == Body::MOVING) {
+		animatedSprite.play(*currentAnimation);
+		this->gs->game->window.draw(this->animatedSprite);
+	} else
+		this->gs->game->window.draw(this->img);
 }
 
 bool Body::setPos(unsigned int x, unsigned int y) {
@@ -50,7 +58,10 @@ bool Body::setPos(unsigned int x, unsigned int y) {
 		this->map->at(x, y)->top = this;
 		this->posx = x;
 		this->posy = y;
-		this->img.setPosition(x * 32, y * 32);
+		if (this->getType() == Body::MOVING) {
+			animatedSprite.setPosition(x * 32, y * 32);
+		} else
+			this->img.setPosition(x * 32, y * 32);
 
 		return true;
 	}

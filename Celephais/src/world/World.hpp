@@ -10,7 +10,7 @@
 
 #include "../world/Map.hpp"
 #include "../body/Body.hpp"
-#include "../characters/Kuranes.h"
+#include "../body/MovingBody.hpp"
 #include "../core/GameState.hpp"
 #include <list>
 #include "../core/Dialogue.hpp"
@@ -28,7 +28,7 @@ class World {
 	bool __insertBody(Body*, unsigned int, unsigned int);
 
 public:
-	Kuranes* player;
+	MovingBody* player;
 
 	Map* map;
 
@@ -38,6 +38,7 @@ public:
 	void mapEvents(sf::Event);
 	void dialogueEvents(sf::Event);
 	void draw();
+	void update(sf::Time dt);
 	Body*& insertBody(std::string, std::string, unsigned int, unsigned int,
 			unsigned int);
 	Tile*& at(unsigned int, unsigned int);

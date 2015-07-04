@@ -39,7 +39,7 @@ void GameStateCinematic::addBackground(std::string name, std::string file) {
 	this->c = 0;
 }
 
-void GameStateCinematic::draw(const float dt) {
+void GameStateCinematic::draw(sf::Time dt) {
 	this->game->window.setView(this->view);
 	if (!this->background.empty())
 		this->game->window.draw(this->background.front());
@@ -48,8 +48,8 @@ void GameStateCinematic::draw(const float dt) {
 		this->d->front().drawOverCinematic();
 }
 
-void GameStateCinematic::update(const float dt) {
-	this->activateNext += dt;
+void GameStateCinematic::update(sf::Time dt) {
+	this->activateNext += dt.asSeconds();
 	if (this->activateNext >= 0.25 && next) {
 		this->d->pop_front();
 		this->c++;

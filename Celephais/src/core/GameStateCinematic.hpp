@@ -31,8 +31,8 @@ public:
 	void addDialogue(const Dialogue&);
 	void addBackground(std::string, std::string);
 
-	void draw(const float);
-	void update(const float);
+	void draw(sf::Time);
+	void update(sf::Time);
 	void handleInput();
 	void loadTextures();
 	void setNext(GameState*);
