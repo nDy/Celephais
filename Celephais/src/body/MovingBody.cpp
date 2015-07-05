@@ -40,6 +40,7 @@ MovingBody::MovingBody(GameState* gs, Map* m, unsigned int x, unsigned int y) :
 	AnimatedSprite animatedSprite(sf::seconds(0.2), true, false);
 	animatedSprite.setPosition(x * 32, y * 32);
 }
+
 void MovingBody::turn(unsigned int side) {
 	this->orientation = side;
 	switch (side) {
@@ -67,26 +68,83 @@ void MovingBody::turn(unsigned int side) {
 
 void MovingBody::moveLeft() {
 	this->turn(Body::LEFT);
-	this->setPos((this->getx() / 32) - 1, this->gety() / 32);
+	this->setMapPos((this->getx() / 32) - 1, this->gety() / 32);
+	//this->setPos((this->getx() / 32) - 1, this->gety() / 32);
+	this->moving = true;
 }
 
 void MovingBody::moveRight() {
 	this->turn(Body::RIGHT);
-	this->setPos((this->getx() / 32) + 1, (this->gety() / 32));
+	this->setMapPos((this->getx() / 32) + 1, (this->gety() / 32));
+	//this->setPos((this->getx() / 32) + 1, (this->gety() / 32));
+	this->moving = true;
 }
 
 void MovingBody::moveUp() {
 	this->turn(Body::BACK);
-	this->setPos(this->getx() / 32, (this->gety() / 32) - 1);
+	this->setMapPos(this->getx() / 32, (this->gety() / 32) - 1);
+	//this->setPos(this->getx() / 32, (this->gety() / 32) - 1);
+	this->moving = true;
 }
 
 void MovingBody::moveDown() {
 	this->turn(Body::FRONT);
-	this->setPos(this->getx() / 32, (this->gety() / 32) + 1);
+	this->setMapPos(this->getx() / 32, (this->gety() / 32) + 1);
+	//this->setPos(this->getx() / 32, (this->gety() / 32) + 1);
+	this->moving = true;
 }
 
 unsigned int MovingBody::getOrientation() {
 	return this->orientation;
+}
+
+void MovingBody::update(sf::Time dt) {
+	if (this->moving) {
+		switch (this->getOrientation()) {
+		case Body::FRONT:
+			animatedSprite.setPosition(animatedSprite.getPosition().x,
+					animatedSprite.getPosition().y + 32 * dt.asSeconds());
+			if (animatedSprite.getPosition().y >= this->gety()) {
+				animatedSprite.setPosition(this->getx(), this->gety());
+				animatedSprite.stop();
+				this->moving = false;
+			}
+			break;
+		case Body::BACK:
+			animatedSprite.setPosition(animatedSprite.getPosition().x,
+					animatedSprite.getPosition().y - 32 * dt.asSeconds());
+			if (animatedSprite.getPosition().y <= this->gety()) {
+				animatedSprite.setPosition(this->getx(), this->gety());
+				animatedSprite.stop();
+				this->moving = false;
+			}
+			break;
+		case Body::RIGHT:
+			animatedSprite.setPosition(
+					animatedSprite.getPosition().x + 32 * dt.asSeconds(),
+					animatedSprite.getPosition().y);
+			if (animatedSprite.getPosition().x >= this->getx()) {
+				animatedSprite.setPosition(this->getx(), this->gety());
+				animatedSprite.stop();
+				this->moving = false;
+			}
+			break;
+		case Body::LEFT:
+			animatedSprite.setPosition(
+					animatedSprite.getPosition().x - 32 * dt.asSeconds(),
+					animatedSprite.getPosition().y);
+			if (animatedSprite.getPosition().x <= this->getx()) {
+				animatedSprite.setPosition(this->getx(), this->gety());
+				animatedSprite.stop();
+				this->moving = false;
+			}
+			break;
+		default:
+			break;
+		}
+	}
+	if (moving)
+		animatedSprite.update(dt);
 }
 
 MovingBody::~MovingBody() {

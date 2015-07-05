@@ -18,6 +18,7 @@ public:
 	Tile();
 	Tile(std::string, std::string, GameState*, Map* m);
 	void drawTile();
+	void drawTop();
 	virtual ~Tile();
 };
 

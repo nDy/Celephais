@@ -26,16 +26,15 @@ private:
 	std::string name;
 	sf::Sprite img; //single framed
 
-	// set up AnimatedSprite
-	AnimatedSprite animatedSprite;
-
 	unsigned int posx, posy;
 
 	//visibilidad del personaje
 	Map* map;
 public:
-
+	// set up AnimatedSprite
+	AnimatedSprite animatedSprite;
 	Animation* currentAnimation;
+
 	GameState* gs;
 	Body();
 	Body(std::string, std::string, GameState*, Map*, unsigned int, unsigned int,
@@ -44,6 +43,7 @@ public:
 	void draw();
 
 	bool setPos(unsigned int, unsigned int);
+	bool setMapPos(unsigned int, unsigned int);
 	void setTexture(sf::Texture&);
 	void setType(unsigned int type);
 	void setName(const std::string& name);

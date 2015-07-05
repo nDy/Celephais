@@ -32,10 +32,16 @@ Tile*& Map::at(unsigned int x, unsigned int y) {
 
 void Map::draw() {
 	//this->gs->game->window.draw(this->background);
-
-	for (unsigned int i = 0; i < this->map.size(); ++i) {
-		for (unsigned int j = 0; j < this->map.at(i).size(); ++j) {
+	unsigned int i, j;
+	for (i = 0; i < this->map.size(); ++i) {
+		for (j = 0; j < this->map.at(i).size(); ++j) {
 			this->map.at(i).at(j)->drawTile();
+		}
+	}
+
+	for (i = 0; i < this->map.size(); ++i) {
+		for (j = 0; j < this->map.at(i).size(); ++j) {
+			this->map.at(i).at(j)->drawTop();
 		}
 	}
 }

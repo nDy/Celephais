@@ -16,8 +16,10 @@ class MovingBody: public Body {
 	Animation walkingAnimationLeft;
 	Animation walkingAnimationRight;
 public:
+	bool moving;
 	MovingBody(GameState*, Map*, unsigned int, unsigned int);
 	void turn(unsigned int);
+	void update(sf::Time);
 	unsigned int getOrientation();
 	void moveLeft();
 	void moveRight();

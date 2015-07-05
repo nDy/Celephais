@@ -69,6 +69,26 @@ bool Body::setPos(unsigned int x, unsigned int y) {
 	return false;
 }
 
+bool Body::setMapPos(unsigned int x, unsigned int y) {
+	if (x >= this->map->getDimX() || y >= this->map->getDimY() || x < 0
+			|| y < 0)
+		return false;
+
+	if (this->map->at(x, y)->name == "Water1"
+			|| this->map->at(x, y)->name == "Water2")
+		return false;
+
+	if (this->map->at(x, y)->top == nullptr) {
+		this->map->at(this->posx, this->posy)->top = nullptr;
+		this->map->at(x, y)->top = this;
+		this->posx = x;
+		this->posy = y;
+		return true;
+	}
+
+	return false;
+}
+
 unsigned int Body::getx() {
 	return this->posx * 32;
 }

@@ -27,6 +27,15 @@ void Tile::drawTile() {
 
 	if (this->getName().size() != 0)
 		this->draw();
+	//if (this->top != nullptr)
+	//	this->top->draw();
+}
+
+void Tile::drawTop() {
+
+	//if (this->getName().size() != 0)
+	//	this->draw();
 	if (this->top != nullptr)
 		this->top->draw();
 }
+
