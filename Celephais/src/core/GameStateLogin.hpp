@@ -10,9 +10,32 @@
 
 #include "GameState.hpp"
 
+#include <mysql_connection.h>
+#include <cppconn/driver.h>
+#include <cppconn/exception.h>
+#include <cppconn/resultset.h>
+#include <cppconn/statement.h>
+
 class GameStateLogin: public GameState {
 private:
 	sf::View view;
+
+	sf::RectangleShape userbg;
+	sf::RectangleShape passbg;
+	sf::Text *textuserinput;
+	sf::Text *textpassinput;
+	sf::Text *textuser;
+	sf::Text *textpass;
+	sf::Font *f;
+
+	//dbstuff
+	sql::Driver *driver;
+	sql::Connection *con;
+	sql::Statement *stmt;
+	sql::ResultSet *res;
+
+	bool userenabled;
+	bool passenabled;
 public:
 	GameStateLogin(Game* game);
 

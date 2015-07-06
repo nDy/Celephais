@@ -87,13 +87,13 @@ void World::dialogueEvents(sf::Event event) {
 void World::mapEvents(sf::Event event) {
 	if (event.key.code == sf::Keyboard::Escape)
 		this->gs->game->window.close();
-	else if (event.key.code == sf::Keyboard::Right) {
+	else if (event.key.code == sf::Keyboard::Right && !player->moving) {
 		player->moveRight();
-	} else if (event.key.code == sf::Keyboard::Left) {
+	} else if (event.key.code == sf::Keyboard::Left && !player->moving) {
 		player->moveLeft();
-	} else if (event.key.code == sf::Keyboard::Up) {
+	} else if (event.key.code == sf::Keyboard::Up && !player->moving) {
 		player->moveUp();
-	} else if (event.key.code == sf::Keyboard::Down) {
+	} else if (event.key.code == sf::Keyboard::Down && !player->moving) {
 		player->moveDown();
 	} else if (event.key.code == sf::Keyboard::F) {
 		switch (player->getOrientation()) {

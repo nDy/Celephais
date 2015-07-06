@@ -38,7 +38,8 @@ MovingBody::MovingBody(GameState* gs, Map* m, unsigned int x, unsigned int y) :
 	this->orientation = Body::FRONT;
 
 	AnimatedSprite animatedSprite(sf::seconds(0.2), true, false);
-	animatedSprite.setPosition(x * 32, y * 32);
+	animatedSprite.setPosition(this->getx(), this->gety());
+	this->moving = false;
 }
 
 void MovingBody::turn(unsigned int side) {
@@ -103,7 +104,7 @@ void MovingBody::update(sf::Time dt) {
 		switch (this->getOrientation()) {
 		case Body::FRONT:
 			animatedSprite.setPosition(animatedSprite.getPosition().x,
-					animatedSprite.getPosition().y + 32 * dt.asSeconds());
+					animatedSprite.getPosition().y + 32 * 2 * dt.asSeconds());
 			if (animatedSprite.getPosition().y >= this->gety()) {
 				animatedSprite.setPosition(this->getx(), this->gety());
 				animatedSprite.stop();
@@ -112,7 +113,7 @@ void MovingBody::update(sf::Time dt) {
 			break;
 		case Body::BACK:
 			animatedSprite.setPosition(animatedSprite.getPosition().x,
-					animatedSprite.getPosition().y - 32 * dt.asSeconds());
+					animatedSprite.getPosition().y - 32 * 2 * dt.asSeconds());
 			if (animatedSprite.getPosition().y <= this->gety()) {
 				animatedSprite.setPosition(this->getx(), this->gety());
 				animatedSprite.stop();
@@ -121,7 +122,7 @@ void MovingBody::update(sf::Time dt) {
 			break;
 		case Body::RIGHT:
 			animatedSprite.setPosition(
-					animatedSprite.getPosition().x + 32 * dt.asSeconds(),
+					animatedSprite.getPosition().x + 32 * 2 * dt.asSeconds(),
 					animatedSprite.getPosition().y);
 			if (animatedSprite.getPosition().x >= this->getx()) {
 				animatedSprite.setPosition(this->getx(), this->gety());
@@ -131,7 +132,7 @@ void MovingBody::update(sf::Time dt) {
 			break;
 		case Body::LEFT:
 			animatedSprite.setPosition(
-					animatedSprite.getPosition().x - 32 * dt.asSeconds(),
+					animatedSprite.getPosition().x - 32 * 2 * dt.asSeconds(),
 					animatedSprite.getPosition().y);
 			if (animatedSprite.getPosition().x <= this->getx()) {
 				animatedSprite.setPosition(this->getx(), this->gety());
