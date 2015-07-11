@@ -22,10 +22,16 @@ private:
 
 	sf::RectangleShape userbg;
 	sf::RectangleShape passbg;
+	sf::RectangleShape newuserbg;
+	sf::RectangleShape newpassbg;
 	sf::Text *textuserinput;
 	sf::Text *textpassinput;
 	sf::Text *textuser;
 	sf::Text *textpass;
+	sf::Text *textnewuserinput;
+	sf::Text *textnewpassinput;
+	sf::Text *textnewuser;
+	sf::Text *textnewpass;
 	sf::Font *f;
 
 	//dbstuff

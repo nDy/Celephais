@@ -30,11 +30,28 @@ GameStateLogin::GameStateLogin(Game* game) :
 	userbg.setOutlineThickness(4);
 	passbg.setOutlineThickness(4);
 
+	newuserbg.setSize(sf::Vector2f(200, 40));
+	newpassbg.setSize(sf::Vector2f(200, 40));
+	newuserbg.setPosition(
+			sf::Vector2f(400, this->game->window.getSize().y / 2 - 30));
+	newpassbg.setPosition(
+			sf::Vector2f(400, this->game->window.getSize().y / 2 + 30));
+	newuserbg.setFillColor(sf::Color::White);
+	newpassbg.setFillColor(sf::Color::White);
+	newuserbg.setOutlineColor(sf::Color::Blue);
+	newpassbg.setOutlineColor(sf::Color::Blue);
+	newuserbg.setOutlineThickness(4);
+	newpassbg.setOutlineThickness(4);
+
 	this->f = new sf::Font();
 	this->textpass = new sf::Text();
 	this->textpassinput = new sf::Text();
 	this->textuser = new sf::Text();
 	this->textuserinput = new sf::Text();
+	this->textnewpass = new sf::Text();
+	this->textnewpassinput = new sf::Text();
+	this->textnewuser = new sf::Text();
+	this->textnewuserinput = new sf::Text();
 
 	if (!this->f->loadFromFile("fonts/Test.ttf")) {
 		std::cout << "error" << std::endl;
@@ -64,6 +81,34 @@ GameStateLogin::GameStateLogin(Game* game) :
 	this->textpassinput->setCharacterSize(24);
 	this->textpassinput->setColor(sf::Color::Black);
 	this->textpassinput->setPosition(450,
+			this->game->window.getSize().y / 2 + 30);
+
+	this->textnewuser->setFont(*f);
+	this->textnewuser->setString(std::string("Usuario:"));
+	this->textnewuser->setCharacterSize(24);
+	this->textnewuser->setColor(sf::Color::White);
+	this->textnewuser->setPosition(650,
+			this->game->window.getSize().y / 2 - 30);
+
+	this->textnewpass->setFont(*f);
+	this->textnewpass->setString(std::string("Pass:"));
+	this->textnewpass->setCharacterSize(24);
+	this->textnewpass->setColor(sf::Color::White);
+	this->textnewpass->setPosition(650,
+			this->game->window.getSize().y / 2 + 30);
+
+	this->textnewuserinput->setFont(*f);
+	this->textnewuserinput->setString(std::string(""));
+	this->textnewuserinput->setCharacterSize(24);
+	this->textnewuserinput->setColor(sf::Color::Black);
+	this->textnewuserinput->setPosition(850,
+			this->game->window.getSize().y / 2 - 30);
+
+	this->textnewpassinput->setFont(*f);
+	this->textnewpassinput->setString(std::string(""));
+	this->textnewpassinput->setCharacterSize(24);
+	this->textnewpassinput->setColor(sf::Color::Black);
+	this->textnewpassinput->setPosition(850,
 			this->game->window.getSize().y / 2 + 30);
 
 	this->game->window.setView(this->view);
@@ -141,8 +186,8 @@ void GameStateLogin::handleInput() {
 				s.append(this->textuserinput->getString().toAnsiString());
 				s.append("'");
 				res = stmt->executeQuery(s);
-				if (!res->next()){
-					std::cout<<"el usuario no existe"<<std::endl;
+				if (!res->next()) {
+					std::cout << "el usuario no existe" << std::endl;
 					break;
 				}
 				if (res->getString("pass")

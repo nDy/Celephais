@@ -9,6 +9,8 @@
 
 #include "../core/GameStateGameplay.hpp"
 
+#include "RoundedRectangleShape.hpp"
+
 Dialogue::Dialogue(std::string str, GameState* gs) {
 	this->f = new sf::Font();
 	this->text = new sf::Text();
@@ -24,11 +26,11 @@ Dialogue::Dialogue(std::string str, GameState* gs) {
 }
 
 void Dialogue::draw() {
-	sf::RectangleShape bg;
-	bg.setSize(sf::Vector2f(800 - 20, 2 * 600 / 5));
+	sf::RoundedRectangleShape bg(sf::Vector2f(800 - 20, -2 * 600 / 5), 3, 45);
 	bg.setOutlineColor(sf::Color::Black);
 	bg.setOutlineThickness(5);
 	bg.setFillColor(sf::Color(0, 0, 0, 180));
+
 	bg.setPosition(
 			((GameStateGameplay*) this->gs)->world->player->getx() - 400 + 10,
 			((GameStateGameplay*) this->gs)->world->player->gety() + 50);
