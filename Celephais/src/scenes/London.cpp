@@ -221,7 +221,7 @@ London::London(Game* g) :
 
 	std::list<Dialogue> chatterings;
 	chatterings.push_back(
-			Dialogue("Perhaps it was natural for heam to dream a new name",
+			Dialogue("Perhaps it was natural for him to dream a new name",
 					this));
 
 	peter->setDialogue(chatterings);
