@@ -34,6 +34,9 @@ private:
 	sf::Text *textnewpass;
 	sf::Font *f;
 
+	sf::RectangleShape buttonLogin;
+	sf::Text *textButtonLogin;
+
 	//dbstuff
 	sql::Driver *driver;
 	sql::Connection *con;
@@ -51,6 +54,7 @@ public:
 	void loadgame();
 	void loadTextures();
 	void setNext(GameState*);
+	int loginAttempt();
 
 	virtual ~GameStateLogin();
 };

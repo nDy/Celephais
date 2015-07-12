@@ -116,6 +116,19 @@ GameStateLogin::GameStateLogin(Game* game) :
 	this->userenabled = false;
 	this->passenabled = false;
 
+	//button
+	buttonLogin.setSize(sf::Vector2f(200, 40));
+	buttonLogin.setPosition(
+			sf::Vector2f(400, this->game->window.getSize().y / 2 + 100));
+	buttonLogin.setFillColor(sf::Color::White);
+	buttonLogin.setOutlineColor(sf::Color::Blue);
+	buttonLogin.setOutlineThickness(4);
+
+	this->textButtonLogin = new sf::Text(sf::String("Iniciar sesion"), *f, 20);
+	this->textButtonLogin->setColor(sf::Color::Black);
+	this->textButtonLogin->setPosition(420,
+			this->game->window.getSize().y / 2 + 105);
+
 	//open db connection
 
 	/* Create a connection */
@@ -137,6 +150,10 @@ void GameStateLogin::draw(sf::Time dt) {
 	this->game->window.draw(passbg);
 	this->game->window.draw(*textpass);
 	this->game->window.draw(*textpassinput);
+
+	//draw button
+	this->game->window.draw(buttonLogin);
+	this->game->window.draw(*textButtonLogin);
 
 }
 
@@ -181,21 +198,14 @@ void GameStateLogin::handleInput() {
 					this->textpassinput->setString(aux);
 				}
 			} else if (event.key.code == sf::Keyboard::Return) {
-				std::string s;
-				s = "SELECT pass FROM users WHERE user = '";
-				s.append(this->textuserinput->getString().toAnsiString());
-				s.append("'");
-				res = stmt->executeQuery(s);
-				if (!res->next()) {
-					std::cout << "el usuario no existe" << std::endl;
-					break;
+				int x = this->loginAttempt();
+				if (x == 0) {
+					//el usuario no existe
+				} else if (x == 1) {
+					//password incorrecto
+				} else {
+					//esto no deberia pasar
 				}
-				if (res->getString("pass")
-						== this->textpassinput->getString().toAnsiString())
-					this->loadgame();
-				else
-					std::cout << "password incorrecto" << std::endl;
-
 			}
 
 		}
@@ -222,7 +232,7 @@ void GameStateLogin::handleInput() {
 		default:
 			break;
 		}
-
+//cuadros de texto
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			sf::Vector2i position = sf::Mouse::getPosition(this->game->window);
 			if (position.x > this->userbg.getPosition().x
@@ -249,10 +259,33 @@ void GameStateLogin::handleInput() {
 			} else
 				this->passenabled = false;
 		}
+//	boton
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			sf::Vector2i position = sf::Mouse::getPosition(this->game->window);
+			if (position.x > this->buttonLogin.getPosition().x
+					&& position.x
+							< this->buttonLogin.getPosition().x
+									+ this->buttonLogin.getSize().x
+					&& position.y > this->buttonLogin.getPosition().y
+					&& position.y
+							< this->buttonLogin.getPosition().y
+									+ this->buttonLogin.getSize().y) {
+				//loadgame
+				int x = this->loginAttempt();
+				if (x == 0) {
+					//el usuario no existe
+				} else if (x == 1) {
+					//password incorrecto
+				} else {
+					//esto no deberia pasar
+				}
 
+			}
+
+		}
 	}
-
 }
+
 void GameStateLogin::loadTextures() {
 	return;
 }
@@ -264,6 +297,26 @@ void GameStateLogin::loadgame() {
 }
 void GameStateLogin::setNext(GameState* gs) {
 	this->nextState = gs;
+}
+
+int GameStateLogin::loginAttempt() {
+	std::string s;
+	s = "SELECT pass FROM users WHERE user = '";
+	s.append(this->textuserinput->getString().toAnsiString());
+	s.append("'");
+	res = stmt->executeQuery(s);
+	if (!res->next()) {
+		//std::cout << "el usuario no existe" << std::endl;
+		return 0;
+	}
+	if (res->getString("pass")
+			== this->textpassinput->getString().toAnsiString())
+		//el juego carga
+		this->loadgame();
+	else {
+		//std::cout << "password incorrecto" << std::endl;
+		return 1;
+	}
 }
 
 GameStateLogin::~GameStateLogin() {
