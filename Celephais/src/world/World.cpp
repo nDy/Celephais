@@ -24,6 +24,9 @@ World::World(sf::View* view, GameState* gs, unsigned int sizex,
 	oldx = player->getx();
 	oldy = player->gety();
 
+	moving = false;
+	movingCount = 1;
+
 }
 
 bool World::__insertBody(Body* top, unsigned int x, unsigned int y) {
@@ -56,14 +59,6 @@ World::~World() {
 }
 
 void World::draw() {
-	if (this->oldx != this->player->getx()
-			|| this->oldy != this->player->gety()) {
-		this->view->move((float) this->player->getx() - (float) this->oldx,
-				(float) this->player->gety() - (float) this->oldy);
-		this->gs->game->window.setView(*this->view);
-		this->oldx = this->player->getx();
-		this->oldy = this->player->gety();
-	}
 
 	this->map->draw();
 
@@ -88,12 +83,16 @@ void World::mapEvents(sf::Event event) {
 	if (event.key.code == sf::Keyboard::Escape)
 		this->gs->game->window.close();
 	else if (event.key.code == sf::Keyboard::Right && !player->moving) {
+		moving = true;
 		player->moveRight();
 	} else if (event.key.code == sf::Keyboard::Left && !player->moving) {
+		moving = true;
 		player->moveLeft();
 	} else if (event.key.code == sf::Keyboard::Up && !player->moving) {
+		moving = true;
 		player->moveUp();
 	} else if (event.key.code == sf::Keyboard::Down && !player->moving) {
+		moving = true;
 		player->moveDown();
 	} else if (event.key.code == sf::Keyboard::F) {
 		switch (player->getOrientation()) {
@@ -175,4 +174,21 @@ unsigned int World::sizeY() {
 
 void World::update(sf::Time dt) {
 	this->player->update(dt);
+
+	if (moving) {
+		if (this->oldx != this->player->getx()
+				|| this->oldy != this->player->gety()) {
+			this->view->move(
+					((float) this->player->animatedSprite.getPosition().x
+							- (float) this->oldx),
+					((float) this->player->animatedSprite.getPosition().y
+							- (float) this->oldy));
+			this->gs->game->window.setView(*this->view);
+			this->oldx = this->player->animatedSprite.getPosition().x;
+			this->oldy = this->player->animatedSprite.getPosition().y;
+		} else {
+			moving = false;
+			movingCount = 1;
+		}
+	}
 }

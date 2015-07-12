@@ -17,13 +17,17 @@
 
 class World {
 
-	unsigned int oldx, oldy;
+	float oldx, oldy;
 
 	sf::View* view;
 
 	GameState* gs;
 
 	std::list<Dialogue>* d;
+
+	bool moving;
+
+	int movingCount;
 
 	bool __insertBody(Body*, unsigned int, unsigned int);
 

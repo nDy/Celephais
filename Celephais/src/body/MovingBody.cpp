@@ -104,7 +104,7 @@ void MovingBody::update(sf::Time dt) {
 		switch (this->getOrientation()) {
 		case Body::FRONT:
 			animatedSprite.setPosition(animatedSprite.getPosition().x,
-					animatedSprite.getPosition().y + 32 * 2 * dt.asSeconds());
+					animatedSprite.getPosition().y + 32 * 3 * dt.asSeconds());
 			if (animatedSprite.getPosition().y >= this->gety()) {
 				animatedSprite.setPosition(this->getx(), this->gety());
 				animatedSprite.stop();
@@ -113,7 +113,7 @@ void MovingBody::update(sf::Time dt) {
 			break;
 		case Body::BACK:
 			animatedSprite.setPosition(animatedSprite.getPosition().x,
-					animatedSprite.getPosition().y - 32 * 2 * dt.asSeconds());
+					animatedSprite.getPosition().y - 32 * 3 * dt.asSeconds());
 			if (animatedSprite.getPosition().y <= this->gety()) {
 				animatedSprite.setPosition(this->getx(), this->gety());
 				animatedSprite.stop();
@@ -122,7 +122,7 @@ void MovingBody::update(sf::Time dt) {
 			break;
 		case Body::RIGHT:
 			animatedSprite.setPosition(
-					animatedSprite.getPosition().x + 32 * 2 * dt.asSeconds(),
+					animatedSprite.getPosition().x + 32 * 3 * dt.asSeconds(),
 					animatedSprite.getPosition().y);
 			if (animatedSprite.getPosition().x >= this->getx()) {
 				animatedSprite.setPosition(this->getx(), this->gety());
@@ -132,7 +132,7 @@ void MovingBody::update(sf::Time dt) {
 			break;
 		case Body::LEFT:
 			animatedSprite.setPosition(
-					animatedSprite.getPosition().x - 32 * 2 * dt.asSeconds(),
+					animatedSprite.getPosition().x - 32 * 3 * dt.asSeconds(),
 					animatedSprite.getPosition().y);
 			if (animatedSprite.getPosition().x <= this->getx()) {
 				animatedSprite.setPosition(this->getx(), this->gety());
