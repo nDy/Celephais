@@ -20,6 +20,8 @@ class GameStateLogin: public GameState {
 private:
 	sf::View view;
 
+	sf::Sprite background;
+
 	sf::RectangleShape userbg;
 	sf::RectangleShape passbg;
 	sf::RectangleShape newuserbg;

@@ -129,6 +129,10 @@ GameStateLogin::GameStateLogin(Game* game) :
 	this->textButtonLogin->setPosition(420,
 			this->game->window.getSize().y / 2 + 105);
 
+	this->res = nullptr;
+
+	this->texmgr->loadTexture("LoginBg", "media/LoginBg.png");
+	this->background.setTexture(this->texmgr->getRef("LoginBg"));
 	//open db connection
 
 	/* Create a connection */
@@ -141,6 +145,8 @@ GameStateLogin::GameStateLogin(Game* game) :
 }
 
 void GameStateLogin::draw(sf::Time dt) {
+	//draw bg
+	this->game->window.draw(this->background);
 	//draw username textbox
 	this->game->window.draw(userbg);
 	this->game->window.draw(*textuser);
