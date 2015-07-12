@@ -39,6 +39,9 @@ private:
 	sf::RectangleShape buttonLogin;
 	sf::Text *textButtonLogin;
 
+	sf::Text *textnewb;
+	sf::RectangleShape newbcheckbox;
+
 	//dbstuff
 	sql::Driver *driver;
 	sql::Connection *con;
@@ -47,6 +50,7 @@ private:
 
 	bool userenabled;
 	bool passenabled;
+	bool newb;
 public:
 	GameStateLogin(Game* game);
 
