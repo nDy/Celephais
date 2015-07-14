@@ -80,9 +80,7 @@ void World::dialogueEvents(sf::Event event) {
 }
 
 void World::mapEvents(sf::Event event) {
-	if (event.key.code == sf::Keyboard::Escape)
-		this->gs->game->window.close();
-	else if (event.key.code == sf::Keyboard::Right && !player->moving) {
+	if (event.key.code == sf::Keyboard::Right && !player->moving) {
 		moving = true;
 		player->moveRight();
 	} else if (event.key.code == sf::Keyboard::Left && !player->moving) {

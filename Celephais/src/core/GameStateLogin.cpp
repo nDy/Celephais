@@ -24,8 +24,8 @@ GameStateLogin::GameStateLogin(Game* game) :
 			sf::Vector2f(400, this->game->window.getSize().y / 2 + 30));
 	userbg.setFillColor(sf::Color::White);
 	passbg.setFillColor(sf::Color::White);
-	userbg.setOutlineColor(sf::Color::Blue);
-	passbg.setOutlineColor(sf::Color::Blue);
+	userbg.setOutlineColor(sf::Color::Black);
+	passbg.setOutlineColor(sf::Color::Black);
 	userbg.setOutlineThickness(4);
 	passbg.setOutlineThickness(4);
 
@@ -37,8 +37,8 @@ GameStateLogin::GameStateLogin(Game* game) :
 			sf::Vector2f(400, this->game->window.getSize().y / 2 + 30));
 	newuserbg.setFillColor(sf::Color::White);
 	newpassbg.setFillColor(sf::Color::White);
-	newuserbg.setOutlineColor(sf::Color::Blue);
-	newpassbg.setOutlineColor(sf::Color::Blue);
+	newuserbg.setOutlineColor(sf::Color::Black);
+	newpassbg.setOutlineColor(sf::Color::Black);
 	newuserbg.setOutlineThickness(4);
 	newpassbg.setOutlineThickness(4);
 
@@ -120,7 +120,7 @@ GameStateLogin::GameStateLogin(Game* game) :
 	buttonLogin.setPosition(
 			sf::Vector2f(400, this->game->window.getSize().y / 2 + 100));
 	buttonLogin.setFillColor(sf::Color::White);
-	buttonLogin.setOutlineColor(sf::Color::Blue);
+	buttonLogin.setOutlineColor(sf::Color::Black);
 	buttonLogin.setOutlineThickness(4);
 
 	this->textButtonLogin = new sf::Text(sf::String("Iniciar sesion"), *f, 20);
@@ -167,26 +167,23 @@ void GameStateLogin::draw(sf::Time dt) {
 	//draw bg
 	this->game->window.draw(this->background);
 
-	if (login) {
-		//draw username textbox
-		this->game->window.draw(userbg);
-		this->game->window.draw(*textuser);
-		this->game->window.draw(*textuserinput);
+	//draw username textbox
+	this->game->window.draw(userbg);
+	this->game->window.draw(*textuser);
+	this->game->window.draw(*textuserinput);
 
-		//draw pass textbox
-		this->game->window.draw(passbg);
-		this->game->window.draw(*textpass);
-		this->game->window.draw(*textpassinput);
+	//draw pass textbox
+	this->game->window.draw(passbg);
+	this->game->window.draw(*textpass);
+	this->game->window.draw(*textpassinput);
 
-		//draw button
-		this->game->window.draw(buttonLogin);
-		this->game->window.draw(*textButtonLogin);
+	//draw button
+	this->game->window.draw(buttonLogin);
+	this->game->window.draw(*textButtonLogin);
 
-		this->game->window.draw(newbcheckbox);
-		this->game->window.draw(*textnewb);
-	} else {
+	this->game->window.draw(newbcheckbox);
+	this->game->window.draw(*textnewb);
 
-	}
 }
 
 void GameStateLogin::update(sf::Time dt) {
@@ -357,6 +354,10 @@ int GameStateLogin::loginAttempt() {
 		s.append("');");
 		try {
 			stmt->execute(s);
+			this->game->currentPlayer.clear();
+			this->game->currentPlayer.append(
+					this->textuserinput->getString().toAnsiString());
+
 			this->loadgame();
 
 		} catch (sql::SQLException e) {
@@ -375,10 +376,13 @@ int GameStateLogin::loginAttempt() {
 			return 0;
 		}
 		if (res->getString("pass")
-				== this->textpassinput->getString().toAnsiString())
+				== this->textpassinput->getString().toAnsiString()) {
 			//el juego carga
+			this->game->currentPlayer.clear();
+			this->game->currentPlayer.append(
+					this->textuserinput->getString().toAnsiString());
 			this->loadgame();
-		else {
+		} else {
 			//std::cout << "password incorrecto" << std::endl;
 			return 1;
 		}

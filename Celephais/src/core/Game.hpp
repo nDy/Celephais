@@ -9,6 +9,7 @@
 #define CORE_GAME_HPP_
 
 #include <stack>
+#include <string>
 #include <SFML/Graphics.hpp>
 
 #include "../utils/TextureManager.hpp"
@@ -22,6 +23,9 @@ public:
 	Game();
 
 	std::stack<GameState*> states;
+
+	std::string currentPlayer;
+	std::string currentSavegameID;
 
 	sf::RenderWindow window;
 

@@ -19,16 +19,24 @@ public:
 private:
 	sf::View view;
 
+	//pause
+	sf::RectangleShape pausebg;
+	bool paused;
+	sf::Font *f;
+	sf::Text *textload;
+	sf::Text *textsave;
+	sf::Text *textexit;
+
 public:
 	GameStateGameplay(Game*, TextureManager*, GameState*, unsigned int,
-			unsigned int,unsigned int, unsigned int);
+			unsigned int, unsigned int, unsigned int);
 
 	void draw(sf::Time dt);
 	void update(sf::Time dt);
 	void handleInput();
 	void loadTextures();
 	void setNext(GameState*);
-	void setExit(unsigned int,unsigned int);
+	void setExit(unsigned int, unsigned int);
 	virtual ~GameStateGameplay();
 };
 
