@@ -16,23 +16,22 @@
 #include <random>
 
 London::London(Game* g) :
-		GameStateGameplay(g, new TextureManager(), nullptr, 35, 35, 7, 11) {
-
+		GameStateGameplay(g, new TextureManager(), nullptr, 30, 25, 7, 11) {
 
 	this->gameID = Level::London;
 
 	//replace with pointer to next scene
 	this->setNext(new ::Room(g));
-	this->setExit(34, 11);
+	this->setExit(29, 14);
 
-	///this->world->insertBody("StreetLight", "media/tiles/StreetLight.png",
-	//	Body::SILENT, 13, 8);
-	//this->world->insertBody("StreetLight", "media/tiles/StreetLight.png",
-	//Body::SILENT, 17, 8);
-//	this->world->insertBody("StreetLight", "media/tiles/StreetLight.png",
-	//Body::SILENT, 25, 8);
-	//this->world->insertBody("StreetLight", "media/tiles/StreetLight.png",
-	//	Body::SILENT, 29, 8);
+	this->world->insertBody("StreetLight", "media/tiles/StreetLight.png",
+			Body::SILENT, 10, 13);
+	this->world->insertBody("StreetLight", "media/tiles/StreetLight.png",
+			Body::SILENT, 15, 13);
+	this->world->insertBody("StreetLight", "media/tiles/StreetLight.png",
+			Body::SILENT, 20, 13);
+	this->world->insertBody("StreetLight", "media/tiles/StreetLight.png",
+			Body::SILENT, 25, 13);
 //primer edif
 	this->world->insertBody("WHouse", "media/tiles/WHouse1.png", Body::SILENT,
 			9, 11);
@@ -63,101 +62,6 @@ London::London(Game* g) :
 			Body::SILENT, 23, 11);
 	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
 			24, 11);
-//edif de esquina
-	this->world->insertBody("WHouse", "media/tiles/WHouse1.png", Body::SILENT,
-			27, 11);
-	this->world->insertBody("WindowHouse", "media/tiles/WindowHouse1.png",
-			Body::SILENT, 28, 11);
-	this->world->insertBody("WindowHouse", "media/tiles/WindowHouse1.png",
-			Body::SILENT, 29, 11);
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			30, 11);
-
-	this->world->insertBody("WHouse", "media/tiles/WHouse1.png", Body::SILENT,
-			27, 13);
-	this->world->insertBody("WindowHouse", "media/tiles/WindowHouse1.png",
-			Body::SILENT, 28, 13);
-	this->world->insertBody("WindowHouse", "media/tiles/WindowHouse1.png",
-			Body::SILENT, 29, 13);
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			30, 13);
-
-	//primer edif abajo
-
-	this->world->insertBody("WHouse", "media/tiles/WHouse1.png", Body::SILENT,
-			9, 20);
-	this->world->insertBody("WindowHouse", "media/tiles/WindowHouse1.png",
-			Body::SILENT, 10, 20);
-	this->world->insertBody("WDoorHouse", "media/tiles/WDoorHouse1.png",
-			Body::SILENT, 11, 20);
-	this->world->insertBody("DoorHouse", "media/tiles/DoorHouse1.png",
-			Body::SILENT, 12, 20);
-	this->world->insertBody("EDoorHouse", "media/tiles/EDoorHouse1.png",
-			Body::SILENT, 13, 20);
-	this->world->insertBody("WindowHouse", "media/tiles/WindowHouse1.png",
-			Body::SILENT, 14, 20);
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			15, 20);
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			16, 20);
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			17, 20);
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			18, 20);
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			19, 20);
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			20, 20);
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			21, 20);
-
-// segundo edif abajo
-
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			17, 26);
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			18, 26);
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			19, 26);
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			20, 26);
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			21, 26);
-
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			17, 28);
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			18, 28);
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			19, 28);
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			20, 28);
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			21, 28);
-
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			17, 30);
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			18, 30);
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			19, 30);
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			20, 30);
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			21, 30);
-
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			17, 32);
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			18, 32);
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			19, 32);
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			20, 32);
-	this->world->insertBody("EHouse", "media/tiles/EHouse1.png", Body::SILENT,
-			21, 32);
-
-
 
 	this->texmgr->loadTexture("Grass1", "media/tiles/Grass1.png");
 	this->texmgr->loadTexture("Grass2", "media/tiles/Grass2.png");
@@ -176,12 +80,18 @@ London::London(Game* g) :
 	for (unsigned int i = 0; i < this->world->sizeY(); ++i) {
 		for (unsigned int j = 0; j < this->world->sizeX(); ++j) {
 			if (i >= 7 && j >= 7) {
-				if ((j > 8 && j < 26 && i > 12 && i <= 15)
-						|| (j > 22 && j < 26 && i > 15
-								&& i <= this->world->sizeX() - 1)) {
+				if (j > 8 && j < 30 && i > 12 && i <= 15) {
 					this->world->at(j, i)->setName("Sidewalk1");
 					this->world->at(j, i)->setTexture(
 							this->texmgr->getRef("Sidewalk1"));
+				} else if (i == 16) {
+					this->world->at(j, i)->setName("NLake");
+					this->world->at(j, i)->setTexture(
+							this->texmgr->getRef("NLake"));
+				} else if (i > 16) {
+					this->world->at(j, i)->setName("Water1");
+					this->world->at(j, i)->setTexture(
+							this->texmgr->getRef("Water1"));
 				} else {
 
 					std::uniform_int_distribution<int> distribution(1, 4);

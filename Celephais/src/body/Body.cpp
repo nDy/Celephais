@@ -75,7 +75,7 @@ bool Body::setMapPos(unsigned int x, unsigned int y) {
 		return false;
 
 	if (this->map->at(x, y)->name == "Water1"
-			|| this->map->at(x, y)->name == "Water2")
+			|| this->map->at(x, y)->name == "Water2"|| this->map->at(x, y)->name == "NLake")
 		return false;
 
 	if (this->map->at(x, y)->top == nullptr) {
