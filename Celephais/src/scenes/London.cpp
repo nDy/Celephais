@@ -18,8 +18,11 @@
 London::London(Game* g) :
 		GameStateGameplay(g, new TextureManager(), nullptr, 35, 35, 7, 11) {
 
+
+	this->gameID = Level::London;
+
 	//replace with pointer to next scene
-	this->setNext(new Room(g));
+	this->setNext(new ::Room(g));
 	this->setExit(34, 11);
 
 	///this->world->insertBody("StreetLight", "media/tiles/StreetLight.png",

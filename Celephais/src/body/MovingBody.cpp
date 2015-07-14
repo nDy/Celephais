@@ -38,7 +38,7 @@ MovingBody::MovingBody(GameState* gs, Map* m, unsigned int x, unsigned int y) :
 	this->orientation = Body::FRONT;
 
 	AnimatedSprite animatedSprite(sf::seconds(0.2), true, false);
-	animatedSprite.setPosition(this->getx(), this->gety());
+	animatedSprite.setPosition(x * 32, y * 32);
 	this->moving = false;
 }
 

@@ -12,6 +12,10 @@
 
 Room::Room(Game* g) :
 		GameStateGameplay(g, new TextureManager(), nullptr, 19, 13, 17, 10) {
+
+
+	this->gameID = Level::Room;
+
 	//replace with pointer to next scene
 	this->setNext(nullptr);
 	this->setExit(18, 12);

@@ -12,7 +12,9 @@
 Intro::Intro(Game* game) :
 		GameStateCinematic(game, new TextureManager(), nullptr) {
 
-	this->setNext(new London(game));
+	this->gameID = Level::Intro;
+
+	this->setNext(new ::London(game));
 
 // intro buildup
 	this->addDialogue(

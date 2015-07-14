@@ -14,6 +14,12 @@
 
 #include "../utils/TextureManager.hpp"
 
+#include <mysql_connection.h>
+#include <cppconn/driver.h>
+#include <cppconn/exception.h>
+#include <cppconn/resultset.h>
+#include <cppconn/statement.h>
+
 class GameState;
 
 class Game {
@@ -25,7 +31,7 @@ public:
 	std::stack<GameState*> states;
 
 	std::string currentPlayer;
-	std::string currentSavegameID;
+	int currentgameID;
 
 	sf::RenderWindow window;
 
@@ -35,6 +41,12 @@ public:
 	GameState* peekState();
 
 	void gameLoop();
+
+	//dbstuff
+	sql::Driver *driver;
+	sql::Connection *con;
+	sql::Statement *stmt;
+	sql::ResultSet *res;
 
 	virtual ~Game();
 };

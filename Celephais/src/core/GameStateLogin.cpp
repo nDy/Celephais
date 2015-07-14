@@ -8,6 +8,7 @@
 #include "GameStateLogin.hpp"
 
 #include "../scenes/Intro.hpp"
+#include "../scenes/London.hpp"
 
 GameStateLogin::GameStateLogin(Game* game) :
 		GameState(game, new TextureManager()) {
@@ -128,7 +129,7 @@ GameStateLogin::GameStateLogin(Game* game) :
 	this->textButtonLogin->setPosition(420,
 			this->game->window.getSize().y / 2 + 105);
 
-	this->res = nullptr;
+	this->game->res = nullptr;
 
 	this->texmgr->loadTexture("LoginBg", "media/LoginBg.png");
 	this->background.setTexture(this->texmgr->getRef("LoginBg"));
@@ -154,12 +155,12 @@ GameStateLogin::GameStateLogin(Game* game) :
 	//open db connection
 
 	/* Create a connection */
-	driver = get_driver_instance();
-	con = driver->connect("localhost", "game", "150553");
+	this->game->driver = get_driver_instance();
+	this->game->con = this->game->driver->connect("localhost", "game", "150553");
 	/* Connect to the MySQL test database */
-	con->setSchema("project");
+	this->game->con->setSchema("project");
 
-	stmt = con->createStatement();
+	this->game->stmt = this->game->con->createStatement();
 }
 
 void GameStateLogin::draw(sf::Time dt) {
@@ -333,7 +334,7 @@ void GameStateLogin::loadTextures() {
 }
 
 void GameStateLogin::loadgame() {
-	this->setNext(new Intro(this->game));
+	this->setNext(new ::London(this->game));
 	this->game->pushState(this->nextState);
 	return;
 }
@@ -353,7 +354,7 @@ int GameStateLogin::loginAttempt() {
 		s.append(this->textpassinput->getString().toAnsiString());
 		s.append("');");
 		try {
-			stmt->execute(s);
+			this->game->stmt->execute(s);
 			this->game->currentPlayer.clear();
 			this->game->currentPlayer.append(
 					this->textuserinput->getString().toAnsiString());
@@ -370,12 +371,12 @@ int GameStateLogin::loginAttempt() {
 		s = "SELECT pass FROM users WHERE user = '";
 		s.append(this->textuserinput->getString().toAnsiString());
 		s.append("';");
-		res = stmt->executeQuery(s);
-		if (!res->next()) {
+		this->game->res = this->game->stmt->executeQuery(s);
+		if (!this->game->res->next()) {
 			//std::cout << "el usuario no existe" << std::endl;
 			return 0;
 		}
-		if (res->getString("pass")
+		if (this->game->res->getString("pass")
 				== this->textpassinput->getString().toAnsiString()) {
 			//el juego carga
 			this->game->currentPlayer.clear();
@@ -390,6 +391,4 @@ int GameStateLogin::loginAttempt() {
 }
 
 GameStateLogin::~GameStateLogin() {
-	delete stmt;
-	delete con;
 }

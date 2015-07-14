@@ -18,13 +18,16 @@ Game::Game() {
 	this->window.create(sf::VideoMode(800, 600), "Celephais");
 	this->window.setFramerateLimit(60);
 
+	currentgameID = 0;
+	currentPlayer.clear();
+
 	//world 9x7
 
 }
 
 void Game::pushState(GameState* state) {
 	this->states.push(state);
-
+	this->currentgameID = this->states.top()->gameID;
 	return;
 }
 
@@ -39,7 +42,6 @@ void Game::changeState(GameState* state) {
 	if (!this->states.empty())
 		popState();
 	pushState(state);
-
 	return;
 }
 

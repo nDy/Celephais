@@ -13,11 +13,15 @@
 class GameState {
 public:
 
+	enum Level { Intro, London, Room };
+
 	Game* game;
 
 	TextureManager* texmgr;
 
 	GameState* nextState;
+
+	int gameID;
 
 	GameState(Game*, TextureManager*);
 

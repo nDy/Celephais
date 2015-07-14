@@ -12,7 +12,6 @@
 #include "../core/GameStateCinematic.hpp"
 #include "../core/Dialogue.hpp"
 
-
 class Intro: public GameStateCinematic {
 
 public:
