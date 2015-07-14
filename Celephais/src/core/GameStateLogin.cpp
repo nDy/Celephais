@@ -164,7 +164,6 @@ GameStateLogin::GameStateLogin(Game* game) :
 }
 
 void GameStateLogin::draw(sf::Time dt) {
-
 	//draw bg
 	this->game->window.draw(this->background);
 

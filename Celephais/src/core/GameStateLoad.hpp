@@ -12,6 +12,7 @@
 
 class GameStateLoad: public GameState {
 private:
+	sf::View view;
 	sf::Sprite background;
 
 	sf::Font *f;

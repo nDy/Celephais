@@ -24,6 +24,7 @@ GameStateGameplay::GameStateGameplay(Game* g, TextureManager* tx,
 
 	paused = false;
 	saving = false;
+	reset = true;
 
 	pausebg.setSize(sf::Vector2f(300, 200));
 	pausebg.setFillColor(sf::Color(0, 0, 0, 180));
@@ -36,7 +37,6 @@ GameStateGameplay::GameStateGameplay(Game* g, TextureManager* tx,
 	savingbg.setOutlineThickness(4);
 
 	this->f = new sf::Font();
-	this->textload = new sf::Text();
 	this->textsave = new sf::Text();
 	this->textexit = new sf::Text();
 
@@ -54,10 +54,6 @@ GameStateGameplay::GameStateGameplay(Game* g, TextureManager* tx,
 		// error...
 	}
 //pause
-	this->textload->setFont(*f);
-	this->textload->setString(std::string("Load"));
-	this->textload->setCharacterSize(18);
-	this->textload->setColor(sf::Color::White);
 
 	this->textsave->setFont(*f);
 	this->textsave->setString(std::string("Save"));
@@ -124,11 +120,6 @@ void GameStateGameplay::draw(sf::Time dt) {
 						- this->textsave->getLocalBounds().width / 2,
 				this->world->player->gety() - 50
 						- this->textsave->getLocalBounds().height / 2);
-		this->textload->setPosition(
-				this->world->player->getx()
-						- this->textload->getLocalBounds().width / 2,
-				this->world->player->gety()
-						- this->textload->getLocalBounds().height / 2);
 		this->textexit->setPosition(
 				this->world->player->getx()
 						- this->textexit->getLocalBounds().width / 2,
@@ -136,7 +127,6 @@ void GameStateGameplay::draw(sf::Time dt) {
 						- this->textexit->getLocalBounds().height / 2);
 
 		this->game->window.draw(pausebg);
-		this->game->window.draw(*textload);
 		this->game->window.draw(*textsave);
 		this->game->window.draw(*textexit);
 	} else if (paused && saving) {
@@ -193,6 +183,11 @@ void GameStateGameplay::draw(sf::Time dt) {
 }
 
 void GameStateGameplay::update(sf::Time dt) {
+	if (reset) {
+		this->world->player->animatedSprite.setPosition(
+				this->world->player->getx(), this->world->player->gety());
+		reset = false;
+	}
 	if (!paused) {
 		this->world->update(dt);
 		if (this->world->player->getx() / 32 == this->exitX
@@ -253,20 +248,6 @@ void GameStateGameplay::handleInput() {
 								< this->textexit->getPosition().y
 										+ this->textexit->getLocalBounds().height) {
 					game->window.close();
-				}
-
-				//load
-
-				if (position.x > this->textload->getPosition().x
-						&& position.x
-								< this->textload->getPosition().x
-										+ this->textload->getLocalBounds().width
-						&& position.y > this->textload->getPosition().y
-						&& position.y
-								< this->textload->getPosition().y
-										+ this->textload->getLocalBounds().height) {
-					this->setNext(new GameStateLoad(this->game));
-					this->game->changeState(this->nextState);
 				}
 
 				//save

@@ -22,8 +22,8 @@ private:
 	//pause
 	sf::RectangleShape pausebg;
 	bool paused;
+	bool reset;
 	sf::Font *f;
-	sf::Text *textload;
 	sf::Text *textsave;
 	sf::Text *textexit;
 

@@ -13,6 +13,7 @@
 
 GameStateLoad::GameStateLoad(Game* game) :
 		GameState(game, new TextureManager()) {
+	this->view = this->game->window.getView();
 	// TODO Auto-generated constructor stub
 
 	this->texmgr->loadTexture("LoginBg", "media/LoginBg.png");
@@ -118,6 +119,9 @@ GameStateLoad::GameStateLoad(Game* game) :
 }
 
 void GameStateLoad::draw(sf::Time dt) {
+	sf::Vector2f pos = sf::Vector2f(this->game->window.getSize());
+	pos *= 0.5f;
+	this->view.setCenter(pos);
 	//draw bg
 	this->game->window.draw(this->background);
 
@@ -180,6 +184,18 @@ void GameStateLoad::handleInput() {
 							< this->texttagthree->getPosition().y
 									+ this->texttagthree->getLocalBounds().height) {
 				this->load(3);
+			}
+
+			if (position.x > this->buttonNew.getPosition().x
+					&& position.x
+							< this->buttonNew.getPosition().x
+									+ this->buttonNew.getSize().x
+					&& position.y > this->buttonNew.getPosition().y
+					&& position.y
+							< this->buttonNew.getPosition().y
+									+ this->buttonNew.getSize().y) {
+				this->setNext(new ::Intro(this->game));
+				this->game->pushState(this->nextState);
 			}
 		}
 	}
@@ -285,7 +301,7 @@ void GameStateLoad::load(int slot) {
 	std::cout << "personaje movido" << std::endl;
 	this->setNext(aux);
 	std::cout << "setnext done" << std::endl;
-	this->game->changeState(this->nextState);
+	this->game->pushState(this->nextState);
 
 }
 
