@@ -49,6 +49,7 @@ public:
 	void setNext(GameState*);
 	void setExit(unsigned int, unsigned int);
 	void save(int);
+	void setPlayerPos(unsigned int, unsigned int);
 	virtual ~GameStateGameplay();
 };
 

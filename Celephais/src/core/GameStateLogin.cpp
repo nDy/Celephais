@@ -7,8 +7,7 @@
 
 #include "GameStateLogin.hpp"
 
-#include "../scenes/Intro.hpp"
-#include "../scenes/London.hpp"
+#include "GameStateLoad.hpp"
 
 GameStateLogin::GameStateLogin(Game* game) :
 		GameState(game, new TextureManager()) {
@@ -156,7 +155,8 @@ GameStateLogin::GameStateLogin(Game* game) :
 
 	/* Create a connection */
 	this->game->driver = get_driver_instance();
-	this->game->con = this->game->driver->connect("localhost", "game", "150553");
+	this->game->con = this->game->driver->connect("localhost", "game",
+			"150553");
 	/* Connect to the MySQL test database */
 	this->game->con->setSchema("project");
 
@@ -334,7 +334,7 @@ void GameStateLogin::loadTextures() {
 }
 
 void GameStateLogin::loadgame() {
-	this->setNext(new ::London(this->game));
+	this->setNext(new ::GameStateLoad(this->game));
 	this->game->pushState(this->nextState);
 	return;
 }

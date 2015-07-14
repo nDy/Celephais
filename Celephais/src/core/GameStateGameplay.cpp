@@ -8,6 +8,7 @@
 #include "GameStateGameplay.hpp"
 #include "GameStateLoad.hpp"
 #include <string>
+#include <iostream>
 
 GameStateGameplay::GameStateGameplay(Game* g, TextureManager* tx,
 		GameState* next, unsigned int sizex, unsigned int sizey,
@@ -376,29 +377,77 @@ void GameStateGameplay::loadSavegames() {
 
 void GameStateGameplay::save(int slot) {
 
-	//a;adir el usuario a la bd
-	std::string s;
-	s = "INSERT INTO savegames (slot, lvl, x, y, user)";
-	s.append("\n");
-	s.append("VALUES ('");
-	s.append(std::to_string(slot));
-	s.append("', '");
-	s.append(std::to_string(this->game->currentgameID));
-	s.append("', '");
-	s.append(std::to_string(this->world->player->getx() / 32));
-	s.append("', '");
-	s.append(std::to_string(this->world->player->gety() / 32));
-	s.append("', '");
-	s.append(this->game->currentPlayer);
-	s.append("');");
-	try {
-		this->game->stmt->execute(s);
+	bool add = false;
 
-	} catch (sql::SQLException e) {
-		//esto no deberia pasar
+	switch (slot) {
+	case 1:
+		if (textlvlone->getString().toAnsiString() == "EMPTY")
+			add = true;
+		break;
+	case 2:
+		if (textlvltwo->getString().toAnsiString() == "EMPTY")
+			add = true;
+		break;
+	case 3:
+		if (textlvlthree->getString().toAnsiString() == "EMPTY")
+			add = true;
+		break;
+	default:
+		break;
 	}
 
+	std::string s;
+
+	if (add) {
+		//a;adir el usuario a la bd
+		s = "INSERT INTO savegames (slot, lvl, x, y, user)";
+		s.append("\n");
+		s.append("VALUES ('");
+		s.append(std::to_string(slot));
+		s.append("', '");
+		s.append(std::to_string(this->game->currentgameID));
+		s.append("', '");
+		s.append(std::to_string(this->world->player->getx() / 32));
+		s.append("', '");
+		s.append(std::to_string(this->world->player->gety() / 32));
+		s.append("', '");
+		s.append(this->game->currentPlayer);
+		s.append("');");
+		try {
+			this->game->stmt->execute(s);
+
+		} catch (sql::SQLException e) {
+			//esto no deberia pasar
+		}
+	} else {
+		//se actualiza la data
+		s = "UPDATE savegames SET lvl='";
+		s.append(std::to_string(this->game->currentgameID));
+		s.append("', x='");
+		s.append(std::to_string(this->world->player->getx() / 32));
+		s.append("', y='");
+		s.append(std::to_string(this->world->player->gety() / 32));
+		s.append("'\n");
+		s.append("WHERE slot='");
+		s.append(std::to_string(slot));
+		s.append("' AND user='");
+		s.append(this->game->currentPlayer);
+		s.append("';");
+
+		try {
+			this->game->stmt->execute(s);
+
+		} catch (sql::SQLException e) {
+			std::cout << "no se realiza el update con el query: " << s
+					<< std::endl;
+		}
+
+	}
 	this->loadSavegames();
+}
+
+void GameStateGameplay::setPlayerPos(unsigned int x, unsigned int y) {
+	this->world->player->setPos(x, y);
 }
 
 GameStateGameplay::~GameStateGameplay() {

@@ -16,11 +16,9 @@ World::World(sf::View* view, GameState* gs, unsigned int sizex,
 	this->gs = gs;
 	this->map = new Map(sizex, sizey, this->gs); //60*58
 	this->view->setSize(800, 600);
-	this->view->setCenter(400, 300);
 
 	this->player = new MovingBody(this->gs, this->map, pposx, pposy);
 
-	this->view->setCenter(player->getx(), player->gety());
 	oldx = player->getx();
 	oldy = player->gety();
 
@@ -59,6 +57,8 @@ World::~World() {
 }
 
 void World::draw() {
+
+	this->view->setCenter(player->animatedSprite.getPosition().x, player->animatedSprite.getPosition().y);
 
 	this->map->draw();
 
