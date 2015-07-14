@@ -84,16 +84,49 @@ Dialogue::~Dialogue() {
 
 void Dialogue::drawOverCinematic() {
 
-	sf::RectangleShape bg;
-	bg.setSize(
-			sf::Vector2f(this->gs->game->window.getSize().x - 20,
-					2 * this->gs->game->window.getSize().y / 5));
+	sf::RectangleShape bg(sf::Vector2f(800 - 20, 2 * 600 / 5));
 	bg.setOutlineColor(sf::Color::Black);
 	bg.setOutlineThickness(5);
 	bg.setFillColor(sf::Color(0, 0, 0, 180));
-	bg.setPosition(10, this->gs->game->window.getSize().x / 2 - 55);
-	this->text->setPosition(40, this->gs->game->window.getSize().x / 2 - 35);
-	this->gs->game->window.draw(bg);
-	this->gs->game->window.draw(*text);
 
+	bg.setPosition(
+			this->gs->game->window.getSize().x/2 - 400 + 10,
+			this->gs->game->window.getSize().y/2 + 50);
+	this->text->setPosition(
+			this->gs->game->window.getSize().x/2 - 400 + 40,
+			this->gs->game->window.getSize().y/2 + 70);
+	this->gs->game->window.draw(bg);
+
+	if (text->getLocalBounds().width < this->gs->game->window.getSize().x - 200)
+		this->gs->game->window.draw(*text);
+	else {
+		sf::Text aux(*text);
+		int auxline = 0;
+		int prev = 0;
+		for (size_t i = 0; i < aux.getString().getSize(); ++i) {
+			if (aux.getString().toAnsiString().at(i) == ' ')
+				prev = i;
+
+			if (aux.findCharacterPos(i).x > 700) {
+				sf::Text line(aux);
+				line.setString(aux.getString().substring(0, prev));
+				line.move(0, auxline * 30);
+				this->gs->game->window.draw(line);
+				++auxline;
+				aux.setString(
+						aux.getString().substring(prev + 1,
+								aux.getString().getSize() - prev));
+				i = 0;
+				prev = 0;
+				if (aux.findCharacterPos(i).x < 700
+						&& !aux.getString().isEmpty()) {
+					sf::Text endingLine(aux);
+					endingLine.setString(aux.getString());
+					endingLine.move(0, auxline * 30);
+					this->gs->game->window.draw(endingLine);
+					break;
+				}
+			}
+		}
+	}
 }

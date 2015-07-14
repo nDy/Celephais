@@ -7,7 +7,7 @@
 
 #include "GameStateLogin.hpp"
 
-#include "../scenes/London.hpp"
+#include "../scenes/Intro.hpp"
 #include <iostream>
 
 GameStateLogin::GameStateLogin(Game* game) :
@@ -150,6 +150,7 @@ GameStateLogin::GameStateLogin(Game* game) :
 	newbcheckbox.setOutlineThickness(4);
 
 	newb = false;
+	login = true;
 
 	//open db connection
 
@@ -163,25 +164,30 @@ GameStateLogin::GameStateLogin(Game* game) :
 }
 
 void GameStateLogin::draw(sf::Time dt) {
+
 	//draw bg
 	this->game->window.draw(this->background);
-	//draw username textbox
-	this->game->window.draw(userbg);
-	this->game->window.draw(*textuser);
-	this->game->window.draw(*textuserinput);
 
-	//draw pass textbox
-	this->game->window.draw(passbg);
-	this->game->window.draw(*textpass);
-	this->game->window.draw(*textpassinput);
+	if (login) {
+		//draw username textbox
+		this->game->window.draw(userbg);
+		this->game->window.draw(*textuser);
+		this->game->window.draw(*textuserinput);
 
-	//draw button
-	this->game->window.draw(buttonLogin);
-	this->game->window.draw(*textButtonLogin);
+		//draw pass textbox
+		this->game->window.draw(passbg);
+		this->game->window.draw(*textpass);
+		this->game->window.draw(*textpassinput);
 
-	this->game->window.draw(newbcheckbox);
-	this->game->window.draw(*textnewb);
+		//draw button
+		this->game->window.draw(buttonLogin);
+		this->game->window.draw(*textButtonLogin);
 
+		this->game->window.draw(newbcheckbox);
+		this->game->window.draw(*textnewb);
+	} else {
+
+	}
 }
 
 void GameStateLogin::update(sf::Time dt) {
@@ -331,7 +337,7 @@ void GameStateLogin::loadTextures() {
 }
 
 void GameStateLogin::loadgame() {
-	this->setNext(new London(this->game));
+	this->setNext(new Intro(this->game));
 	this->game->pushState(this->nextState);
 	return;
 }

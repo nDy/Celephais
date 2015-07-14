@@ -51,6 +51,10 @@ private:
 	bool userenabled;
 	bool passenabled;
 	bool newb;
+	bool login;
+
+	//paso a carga de partida
+
 public:
 	GameStateLogin(Game* game);
 
