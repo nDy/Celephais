@@ -19,6 +19,11 @@ GameStateLoad::GameStateLoad(Game* game) :
 	this->texmgr->loadTexture("LoginBg", "media/LoginBg.png");
 	this->background.setTexture(this->texmgr->getRef("LoginBg"));
 
+	savingbg.setSize(sf::Vector2f(600, 400));
+	savingbg.setFillColor(sf::Color(0, 0, 0, 180));
+	savingbg.setOutlineColor(sf::Color::White);
+	savingbg.setOutlineThickness(4);
+
 	this->texttagone = new sf::Text();
 	this->textlvlone = new sf::Text();
 
