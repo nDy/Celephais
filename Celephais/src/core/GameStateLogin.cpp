@@ -8,7 +8,6 @@
 #include "GameStateLogin.hpp"
 
 #include "../scenes/Intro.hpp"
-#include <iostream>
 
 GameStateLogin::GameStateLogin(Game* game) :
 		GameState(game, new TextureManager()) {
