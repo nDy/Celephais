@@ -10,7 +10,7 @@ A first version of a homemade engine for tile based rpgs, new versions will be r
 ## The Team
 Lead Programmer: Andres Rangel (ndy.work@gmail.com)
 
-Lead Designer: Oriana Torcat (oryinthesky@hotmail.com)
+Lead Designer: Oriana Torcat (orianatorcat@gmail.com)
 
 ## The License
 The precise and very well written GNU GPL v3
